@@ -4,7 +4,7 @@
             "outputFile": "com.zomeal_android.app-mergeDebugResources-41:/values-so/values-so.xml",
             "map": [
                 {
-                    "source": "/Users/chinmaybehera/.gradle/caches/transforms-3/d974ac8aa9498213e387fce679b720df/transformed/jetified-react-android-0.73.4-debug/res/values-so/values-so.xml",
+                    "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-3\\241ff798f274f9460a7970b7fafa31ad\\transformed\\jetified-react-android-0.73.6-debug\\res\\values-so\\values-so.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",

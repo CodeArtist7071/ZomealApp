@@ -4,7 +4,7 @@
             "outputFile": "com.zomeal_android.app-mergeDebugResources-41:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/chinmaybehera/.gradle/caches/transforms-3/cd2214c0cab9298ec2952acfb08c8033/transformed/material-1.9.0/res/values-v23/values-v23.xml",
+                    "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-3\\cd2214c0cab9298ec2952acfb08c8033\\transformed\\material-1.9.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,5,8,13,17,20,23,26,31,34,38",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/chinmaybehera/.gradle/caches/transforms-3/b6fd6e089d1fa589e7d66053083b84a2/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
+                    "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-3\\b6fd6e089d1fa589e7d66053083b84a2\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -42,7 +42,7 @@
                     }
                 },
                 {
-                    "source": "/Users/chinmaybehera/.gradle/caches/transforms-3/56e06eb9195213d05a6e15eb53816247/transformed/appcompat-1.6.1/res/values-v23/values-v23.xml",
+                    "source": "C:\\Users\\HP\\.gradle\\caches\\transforms-3\\56e06eb9195213d05a6e15eb53816247\\transformed\\appcompat-1.6.1\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
