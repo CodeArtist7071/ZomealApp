@@ -5,14 +5,13 @@ import { colorGrade1, colorGrade2, primaryBg } from '../constants/Stylesheet'
 import CustomAnimationCard from '../components/CustomAnimationCard'
 import { Dimensions } from 'react-native'
 import CalActionNMore from './CalActionNMore'
-import BottomNavigation from '../BottomNavigation'
-
+import BottomNavigation from '../Navigators/BottomNavigation'
 const {width, height} = Dimensions.get('window')
 const cardWidth = width * .95;
 const cardHeight = width * .5
 const Dashboard=()=>{
 return(
-    <BottomNavigation/>
+       <BottomNavigation/> 
 )
 }
 export default Dashboard

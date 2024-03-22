@@ -20,7 +20,7 @@ return(
     <CustomText paddingAxisY={'$6'} fontSize={24.5} fontWeight={700} text={'Enter Verification code'} color={textColor}/>
     <CustomText color={textColor} width={'80%'} height={70} textAlign={'justify'} fontSize={14.5} text={'We are automatically detecting a SMS send to your registered mobile number'}/>
   <CustomOtpfield size={'xl'} value={value} onFilled={onFilled} onChangeText={onChangeText} keyboardType={keyboardType}/>
-  <CustomButton variant={'elevated'} width={'70%'} height={50} marginTop={30} bgColor={textColor} color={accentBg} title={'Confirm Code'} handlePressEvent={confirmEvent}/>
+  <CustomButton variant={'elevated'} width={'70%'} height={50} marginTop={30} bgColor={textColor} color={accentBg} borderRadius={50} title={'Confirm Code'} handlePressEvent={confirmEvent}/>
   <HStack py={'$10'} justifyContent="center">
     <CustomText text={'Dont recieve the OTP?'}/>
     <CustomLink text={'RESEND OTP'} linkColor={textColor} linkFontWeight={700}/>

@@ -3,7 +3,7 @@ import { InputField } from "@gluestack-ui/themed";
 import { FormControl } from "@gluestack-ui/themed";
 import { StyleSheet, TextInput } from "react-native";
 import { OtpInput } from "react-native-otp-entry";
-import { textColor } from "../constants/Stylesheet";
+import { accentBg, dark, textColor } from "../constants/Stylesheet";
 
 
 
@@ -24,7 +24,7 @@ return(
    pinCodeContainerStyle: styles.pinCodeContainer,
    pinCodeTextStyle: styles.pinCodeText,
    focusStickStyle: styles.focusStick,
-   focusedPinCodeContainerStyle: styles.activePinCodeContainer
+   focusedPinCodeContainerStyle:accentBg
   }}
 />
 )
@@ -39,10 +39,15 @@ const styles = StyleSheet.create({
   flexDirection:'row',
   justifyContent:'space-between',
   alignSelf:'center',
+  color:dark
  },
   pinCodeContainer:{
   width:50,
   height:50,
-  backgroundColor:textColor
+  backgroundColor:textColor,
+  color:dark
+ },
+ pinCodeText:{
+  color:accentBg
  }
 })

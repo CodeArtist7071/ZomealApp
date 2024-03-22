@@ -43,6 +43,7 @@ const PhoneSignIn = ({navigation}) => {
     if (initializing) setInitializing(false);
     if (user) {
       // Handle successful login here
+      navigation.navigate('Dashboard')
     }else{
      
     }
@@ -78,7 +79,7 @@ const PhoneSignIn = ({navigation}) => {
                   },2000);
     setTimeout(()=>{
       setVerifying(false)
-    },1000)              
+    },2000)              
     // Example delay of 2 seconds
   }
   

@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3ab232f-f267-4a1b-988d-40f7d118b503" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/BTabComponents/Customisation.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BTabComponents/Packages.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BTabComponents/Services.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Navigators/AppNavigator.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Navigators/BottomNavigation.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PackagesDetails.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/Database.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/screens/SubscriptionPrompt.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/8.3/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/8.3/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/8.3/dependencies-accessors/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/8.3/dependencies-accessors/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/8.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/8.3/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/8.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/8.3/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/8.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/8.3/fileHashes/fileHashes.bin" afterDir="false" />
@@ -16,7 +26,17 @@
       <change beforePath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/8.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/8.3/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/TabScreens.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/TabScreens.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppNavigator.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BottomNavigation.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/PhoneSign.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/PhoneSign.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CustomCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CustomOtpfield.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomOtpfield.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/FoodPackages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/FoodPackages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/PincodePrompt.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PincodePrompt.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Settings.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/TabScreens.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/BTabComponents/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Verifycode.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Verifycode.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,23 +68,23 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/ZomealApp&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;device.mirroring&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/ZomealApp",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

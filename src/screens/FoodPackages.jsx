@@ -4,6 +4,7 @@ import {LinearGradient as RNLinearGradient} from 'react-native-linear-gradient'
 import { colorGrade1, colorGrade2 } from '../constants/Stylesheet'
 import CustomCard from '../components/CustomCard'
 import CustomText from '../components/CustomText'
+import firestore from '@react-native-firebase/firestore';
 
 
 const items = [
@@ -13,6 +14,8 @@ const items = [
 ]
 
 const FoodPackages=()=>{
+
+
 return(
     <LinearGradient
     flex={1}

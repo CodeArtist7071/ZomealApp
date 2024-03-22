@@ -28,7 +28,6 @@ return(
 <ScrollView
 scrollEnabled
 >
-    {/* Map over the array to create components */}
     {items.map((item, index) => (
         <Card w={'95%'} h={'100'} mt={'$2'} rounded={'$xl'} bgColor={primaryBg} my={'$1'} justifyContent='center' alignSelf='center' key={index} style={{ padding: 20, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
         <HStack> 
