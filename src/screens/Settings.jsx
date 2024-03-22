@@ -1,7 +1,7 @@
 import { FlatList,View, Box,Text,Card, ScrollView, LinearGradient, HStack, Icon } from '@gluestack-ui/themed'
 import React, { useRef } from 'react'
 import CustomLink from '../components/CustomLink'
-import { colorGrade2,colorGrade1, primaryBg } from '../constants/Stylesheet'
+import { colorGrade2,colorGrade1, primaryBg, dark, accentBg } from '../constants/Stylesheet'
 import CustomCard from '../components/CustomCard'
 import { LinearGradient as RNLinearGradient } from 'react-native-linear-gradient'
 import CustomIcon from '../components/CustomIcons'
@@ -29,12 +29,12 @@ return(
 scrollEnabled
 >
     {items.map((item, index) => (
-        <Card w={'95%'} h={'100'} mt={'$2'} rounded={'$xl'} bgColor={primaryBg} my={'$1'} justifyContent='center' alignSelf='center' key={index} style={{ padding: 20, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
+        <Box w={'95%'} h={'100'} mt={'$2'} rounded={'$xl'} my={'$1'} justifyContent='center' alignSelf='center' key={index} style={{ padding: 20, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
         <HStack> 
-            <CustomIcon icons={item.icon}/>
-            <CustomButton handlePressEvent={()=>navigation.navigate(item.page)} title={item.title}/>
+            <CustomIcon IconColor={accentBg} icons={item.icon}/>
+            <CustomButton color={dark} fontSize={14.5} handlePressEvent={()=>navigation.navigate(item.page)} title={item.title}/>
             </HStack>
-        </Card>
+        </Box>
       ))}
 </ScrollView>
 

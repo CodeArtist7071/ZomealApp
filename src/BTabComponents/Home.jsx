@@ -9,6 +9,7 @@ import {LinearGradient as RNLinearGradient} from 'react-native-linear-gradient'
 import CustomText from '../components/CustomText'
 import { Dimensions } from 'react-native'
 import firestore from '@react-native-firebase/firestore'
+import MealMenu from '../components/MealMenu'
 
 const {width,height} = Dimensions.get('window')
 const cardWidth = width * .95
@@ -25,18 +26,15 @@ return(
     <Box h={'100%'}>
     <ScrollView h={'$88'} marginTop={80}>
         <CustomAnimationCard cardHeight={cardHeight} cardWidth={cardWidth} CardBgColor={'white'}/>
+        <Box flex={1} mb={'$10'} justifyContent='center' alignItems='center'>
+        <Card width={'95%'} height={200}>
+          <MealMenu/>
+        </Card>
+        </Box> 
         <Box flex={1} my={'$10'} justifyContent='center' alignItems='center'>
         <Card width={'95%'} height={200}/>
-        </Box>
-        <Box flex={1} mb={'$10'} justifyContent='center' alignItems='center'>
-        <Card width={'95%'} height={200} />
-        </Box>
-        <Box flex={1} mb={'$10'} justifyContent='center' alignItems='center'>
-        <Card width={'95%'} height={200} />
-        </Box>
-        <Box flex={1} mb={'$10'} justifyContent='center' alignItems='center'>
-        <Card width={'95%'} height={200} />
-        </Box>  
+        </Box> 
+        
     </ScrollView>
     <Card py={'$4'} backgroundColor={textColor} borderTopLeftRadius={30} borderTopEndRadius={30}>
     <HStack width={'80%'} py={'$6'} marginLeft={'auto'} marginRight={'auto'} justifyContent='space-between' alignItems='center'>

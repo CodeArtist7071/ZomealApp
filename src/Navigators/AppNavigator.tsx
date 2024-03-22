@@ -10,11 +10,13 @@ import CustomSpinner from "../components/CustomSpinner";
 import CalActionNMore from "../screens/CalActionNMore";
 import PincodePrompt from "../screens/PincodePrompt";
 import SubscriptionPrompt from "../screens/SubscriptionPrompt";
+import Settings from "../screens/Settings";
+import Notification from "../screens/Notification";
 const Stack=createNativeStackNavigator();
 const AppNavigator= () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator >
                 <Stack.Screen component={LoginRedirect} name="LoginRedirect" options={{headerShown:false}}/>
                 <Stack.Screen component={PhoneSignIn} name="Sign In" options={{headerTransparent:true}}/>
                 <Stack.Screen component={Dashboard} name="Dashboard" options={{headerShown:false}}/>
@@ -22,6 +24,8 @@ const AppNavigator= () => {
                 <Stack.Screen component={Balance} name="Balance"/>
                 <Stack.Screen component={Calories} name="Calories"/>
                 <Stack.Screen component={AddAddress} name="Add Address" options={{headerShown:true, headerShadowVisible:true}}/>
+                <Stack.Screen component={Settings} name="Settings"/>
+                <Stack.Screen component={Notification} name="Notify"/>
             </Stack.Navigator>
         </NavigationContainer>
             

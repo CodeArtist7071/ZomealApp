@@ -5,12 +5,14 @@ import { Box, CookingPot, FileCog, HandPlatter, HomeIcon, Package } from 'lucide
 import { color } from 'framer-motion';
 import CustomButton from '../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
-import { accentBg, colorGrade1, colorGrade2 } from '../constants/Stylesheet';
+import { accentBg, colorGrade1, colorGrade2, textColor } from '../constants/Stylesheet';
 import  Home  from '../BTabComponents/Home';
 import  Services  from '../BTabComponents/Services';
 import Packages  from '../BTabComponents/Packages';
 import Customisation  from '../BTabComponents/Customisation';
-
+import Animated, { useAnimatedStyle, withTiming, useSharedValue, useEffect } from 'react-native-reanimated';
+import Hamburger from '../iconComponents/Hamburger';
+import Notification from '../iconComponents/Notification';
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -18,9 +20,9 @@ const BottomTabs = createBottomTabNavigator();
 const BottomNavigation = ()=>{
 
 return(
-    <BottomTabs.Navigator screenOptions={{headerStatusBarHeight:20,headerTransparent:true,tabBarInactiveBackgroundColor:'white',tabBarActiveBackgroundColor:accentBg,tabBarActiveTintColor:'white',tabBarStyle:{height:60},tabBarItemStyle:{paddingBottom:10}}}>
-    <BottomTabs.Screen component={Home} name="Home" options={{tabBarIcon:(({focused,color,size})=><CustomIcon icons={HomeIcon}/>)}}/>
-    <BottomTabs.Screen component={Services} name="Services" options={{tabBarIcon:((color,size)=><CustomIcon icons={HandPlatter}/>)}}/>
+    <BottomTabs.Navigator screenOptions={{headerTitle:'', gestureEnabled:true,headerStatusBarHeight:20,headerTransparent:true,tabBarInactiveBackgroundColor:'white',tabBarActiveBackgroundColor:accentBg,tabBarActiveTintColor:'white',tabBarStyle:{height:60},tabBarItemStyle:{paddingBottom:10}}}>
+    <BottomTabs.Screen component={Home} name="Home" options={{headerRight:()=><Notification/>,headerLeft:()=><Hamburger/>, tabBarIcon:(({focused,color,size})=><CustomIcon icons={HomeIcon}/>)}}/>
+    <BottomTabs.Screen component={Services} name="Services" options={{headerTintColor:textColor,tabBarIcon:((color,size)=><CustomIcon icons={HandPlatter}/>)}}/>
     <BottomTabs.Screen component={Packages} name="Packages" options={{tabBarIcon:((color,size)=><CustomIcon icons={Package}/>)}}/>
     <BottomTabs.Screen component={Customisation} name="Customisation"options={{tabBarIcon:((color,size)=><CustomIcon icons={FileCog}/>)}}/>
   </BottomTabs.Navigator>
