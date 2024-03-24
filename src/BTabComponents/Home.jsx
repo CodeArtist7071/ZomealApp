@@ -4,12 +4,15 @@ import { accentBg, colorGrade1, colorGrade2, dark, primaryBg, textColor } from '
 import CustomCard from '../components/CustomCard'
 import { Box, Card, SafeAreaView,HStack, Text, ScrollView, Button, LinearGradient } from '@gluestack-ui/themed'
 import CustomButton from '../components/CustomButton'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import {LinearGradient as RNLinearGradient} from 'react-native-linear-gradient'
 import CustomText from '../components/CustomText'
 import { Dimensions } from 'react-native'
 import firestore from '@react-native-firebase/firestore'
 import MealMenu from '../components/MealMenu'
+import { useIsFocused } from '@react-navigation/native'
+import Animated, {useAnimatedStyle, useSharedValue, withTiming, Easing } from 'react-native-reanimated'
+
 
 const {width,height} = Dimensions.get('window')
 const cardWidth = width * .95
@@ -18,12 +21,29 @@ const cardHeight = height * .3
   const Home=({navigation})=>{
     const [color, setColor] = useState(false)
     const [isActive, setActive] = useState(false)
+    const isFocused = useIsFocused();
+    const translateY = useSharedValue(0);
+   
+
+    useEffect(()=>{
+     translateY.value = withTiming(isFocused ? 0 :900, {duration:1000,easing:Easing.out(Easing.exp)})
+    },[isFocused])
+   
+    const animatedStyle = useAnimatedStyle(()=>{
+      return{
+        transform: [{translateY:translateY.value}]
+      }  
+    })
+
+
     const handleButtonColor = (color) => {
       setColor(!color)
       setActive(!isActive)
      }
+
 return(
-    <Box h={'100%'}>
+  <Animated.View style={[animatedStyle]}>
+  <Box h={'100%'}>
     <ScrollView h={'$88'} marginTop={80}>
         <CustomAnimationCard cardHeight={cardHeight} cardWidth={cardWidth} CardBgColor={'white'}/>
         <Box flex={1} mb={'$10'} justifyContent='center' alignItems='center'>
@@ -45,6 +65,8 @@ return(
     </Card>
     </Box>
 
+  </Animated.View>
+   
 )
 }
 export default Home

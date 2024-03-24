@@ -29,7 +29,7 @@ const SubscriptionPrompt = () => {
   return (
     <ScrollView >
         <View style={styles.container}>
-            <CustomText text={'Select your preferred Subscription'} paddingAxisY={'$6'} textAlign={'left'} color={dark} fontSize={17.5} />
+          <CustomText text={'Select your preferred package'} paddingAxisY={'$6'} textAlign={'left'} color={dark} fontSize={17.5} />
         <Card id={1} selected={selectedCard === 1} onPress={() => handleCardPress(1)} />
       <Card id={2} selected={selectedCard === 2} onPress={() => handleCardPress(2)} />
       <Card id={3} selected={selectedCard === 3} onPress={() => handleCardPress(3)} />

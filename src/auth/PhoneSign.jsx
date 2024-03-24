@@ -7,7 +7,6 @@ import Verifycode from "../screens/Verifycode"
 import Loginscreen from "../screens/Loginscreen";
 import { Box, KeyboardAvoidingView, Spinner } from "@gluestack-ui/themed";
 import { AnimatePresence, motion } from "framer-motion";
-import { FirebaseRecaptchaVerifierModal } from 'expo-firebase-recaptcha'; // Importing just to use the FirebaseRecaptchaVerifierModal, not the recaptcha itself
 import CustomSpinner from "../components/CustomSpinner";
 import { accentBg } from "../constants/Stylesheet";
 
@@ -49,9 +48,7 @@ const PhoneSignIn = ({navigation}) => {
     }
   }
 
-
-
-  async function signInWithPhoneNumber(phoneNumber) {
+async function signInWithPhoneNumber(phoneNumber) {
     const confirmation = await auth().signInWithPhoneNumber(phoneNumber,true);
     setConfirm(confirmation);
     console.log(confirmation);
@@ -65,14 +62,17 @@ const PhoneSignIn = ({navigation}) => {
       );
       const verificationCode = code; // Store the current value of code
       await confirm.confirm(verificationCode); // Use the stored value
-
+      onAuthStateChanged;
+      const userdata = firebase.auth().currentUser.uid
+      console.log(userdata)
+      console.log(credential)
       console.log('Good job! Code confirmed successfully.');
-     onAuthStateChanged;
     } catch (error) {
       console.log('Error confirming code:', error.message);
       // Handle the error here, such as displaying an error message to the user
       console.log('code',error.verificationCode)
     }
+    setLogging(true)
     setVerifying(true)
      setTimeout(() => {
                     setLogging(false);

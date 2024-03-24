@@ -9,7 +9,7 @@ import BottomNavigation from '../Navigators/BottomNavigation'
 const {width, height} = Dimensions.get('window')
 const cardWidth = width * .95;
 const cardHeight = width * .5
-const Dashboard=()=>{
+const Dashboard=({navigation})=>{
 return(
        <BottomNavigation/> 
 )

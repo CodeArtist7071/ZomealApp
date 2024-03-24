@@ -1,88 +1,85 @@
-import { HStack } from '@gluestack-ui/themed';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { HStack, Image, VStack } from '@gluestack-ui/themed';
 import CustomText from './CustomText';
 import { dark } from '../constants/Stylesheet';
+import firestore from '@react-native-firebase/firestore'; // Import firestore
 
+const WeeklyMenuCollection = firestore().collection('weeklyMenu');
 
 const MealMenu = () => {
-  // Define your weekly menu
-  const weeklyMenu = {
-    Monday: {
-      lunch: 'Chicken salad',
-      dinner: 'Grilled salmon with quinoa',
-    },
-    Tuesday: {
-      lunch: 'Turkey and avocado wrap',
-      dinner: 'Vegetable stir-fry with tofu',
-    },
-    Wednesday: {
-      lunch: 'Quinoa salad with roasted vegetables',
-      dinner: 'Pasta with marinara sauce',
-    },
-    Thursday: {
-        lunch: 'Chicken salad',
-        dinner: 'Grilled salmon with quinoa',
-      },
-    Friday: {
-        lunch: 'Turkey and avocado wrap',
-        dinner: 'Vegetable stir-fry with tofu',
-      },
-    Saturday: {
-        lunch: 'Quinoa salad with roasted vegetables',
-        dinner: 'Pasta with marinara sauce',
-      },
-  
-  };
+  const [todaysMenu, setTodaysMenu] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  // Get the current day
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const currentDate = new Date();
-  const currentDay = days[currentDate.getDay()];
+  useEffect(() => {
+    const fetchTodaysMenu = async () => {
+      try {
+        const currentDate = new Date();
+        const currentDay = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][currentDate.getDay()];
+        const snapshot = await WeeklyMenuCollection.doc(currentDay).get();
+        if (snapshot.exists) {
+          setTodaysMenu(snapshot.data());
+        } else {
+          console.log('No menu found for', currentDay);
+        }
+      } catch (error) {
+        console.error('Error fetching today\'s menu:', error); // Log error here
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // Get today's menu from the weeklyMenu
-  const todaysMenu = weeklyMenu[currentDay];
+    fetchTodaysMenu();
+  }, []);
+  console.log(todaysMenu.Lunch)
 
-  // Render today's menu
   return (
     <View style={styles.container}>
-      <CustomText color={dark} fontSize={17.5} fontWeight={600} textAlign={'center'} text={currentDay}/>
-      <HStack justifyContent='space-between'>
-      <View style={styles.mealSection}>
-        <Text style={styles.mealTitle}>Lunch</Text>
-        <Text style={styles.meal}>{todaysMenu.lunch}</Text>
-      </View>
-      <View style={styles.mealSection}>
-        <Text style={styles.mealTitle}>Dinner</Text>
-        <Text style={styles.meal}>{todaysMenu.dinner}</Text>
-      </View>
-      </HStack>
+      <CustomText color={dark} fontSize={17.5} fontWeight={600} textAlign={'center'} text={"Today's Menu"} />
+      <VStack justifyContent='space-between'>
+        <View style={styles.mealSection}>
+          <Text style={styles.mealTitle}>Lunch</Text>
+          {/* <Image source={{uri:""}} /> */}
+          {loading ? (
+            <Text>Loading...</Text>
+          ) : (
+            todaysMenu.Lunch.map((item, index) => (
+              <Text key={index}>{item}</Text>
+            ))
+          )}
+        </View>
+        <View style={styles.mealSection}>
+          <Text style={styles.mealTitle}>Dinner</Text>
+          {/* <Image source={{uri:""}}/> */}
+          {loading ? (
+            <Text>Loading...</Text>
+          ) : (
+            todaysMenu.Dinner.map((item,index) => (
+              <Text key={index}>{item}</Text>
+            ))
+          )}
+        </View>
+      </VStack>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding:5,
-  },
-  dayTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color:'black'
+    padding: 5,
   },
   mealSection: {
-    marginBottom:5,
-    
+    marginBottom: 10, // Increase spacing between sections
   },
   mealTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color:'black'
+    color: 'black',
+    marginBottom: 5, // Add space below title
   },
   meal: {
-    fontSize: 10,
-    color:'black'
+    fontSize: 16,
+    color: 'black',
   },
 });
 

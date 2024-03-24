@@ -1,30 +1,57 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import { ScrollView, KeyboardAvoidingView } from '@gluestack-ui/themed';
 import CustomTextfield from '../components/CustomTextfield';
 import CustomDropdownPicker from '../components/CustomDropdownPicker';
 import CustomButton from '../components/CustomButton';
 import { Box } from '@gluestack-ui/themed';
 import { accentBg, dark } from '../constants/Stylesheet';
+import firestore from '@react-native-firebase/firestore';
 
 const AddAddress = () => {
-    const [check,setCheck] = useState(' ')
     const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [address, setAddress] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [alternateNumber, setAlternateNumber] = useState('');
-    const [locality, setLocality] = useState('');
-    const [pincode, setPincode] = useState('');
-    const [landmark, setLandmark] = useState('');
+     const [lastName, setLastName] = useState('');
+     const [address, setAddress] = useState('');
+     const [phoneNumber, setPhoneNumber] = useState('');
+     const [alternateNumber, setAlternateNumber] = useState('');
+     const [localities, setLocalities] = useState([]);
+     const [selectedLocality, setSelectedLocality] = useState('');
+     const [pincode, setPincode] = useState('');
+     const [landmark, setLandmark] = useState('');
 
+     useEffect(() => {
+         const fetchLocalities = async () => {
+             try {
+                 const localitySnapshot = await firestore().collection('Localities').get();
+                 const localitiesData = localitySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                 setLocalities(localitiesData);
+                 console.log('Localities data retrieved:', localitiesData);
+             } catch (error) {
+                 console.error('Error fetching localities:', error);
+             }
+         };
 
-    const handleSaveButton = () => {
-      return(
-       console.log(firstName,lastName,address,pincode,phoneNumber,locality)
-    )
- }
+         fetchLocalities();
+     }, []);
 
-    return (
+     const handleSaveButton = async () => {
+         try {
+             await firestore().collection('Users').add({
+                 firstName,
+                 lastName,
+                 address,
+                 phoneNumber,
+                 alternateNumber,
+                 locality: selectedLocality,
+                 pincode,
+                 landmark,
+             });
+             console.log('User added!');
+         } catch (error) {
+             console.error('Error adding user: ', error);
+         }
+     };
+
+return (
         <ScrollView px={'$2'} py={'$5'} mt={'$5'}>
             <KeyboardAvoidingView>
                 <CustomTextfield
@@ -78,28 +105,20 @@ const AddAddress = () => {
                     width={'95%'}
                     color={dark}
                     dropdownPlaceholder={'Select your Locality'}
-                    dropdownData={[
-                        { id: 0, value: 'Soubhagaya Nagar' },
-                        { id: 1, value: 'Bermunda Colony' },
-                        { id: 2, value: 'Jagamara' },
-                        { id: 3, value: 'OUAT Colony' },
-                        { id: 4, value: 'Saheed Nagar' },
-                        { id: 5, value: 'ITER' },
-                        { id: 6, value: 'Pokhariput' },
-                    ]}
-                    handleClick={setLocality}
+                    dropdownData={localities.map(locality => ({ id: locality.id, value: locality.name }))} // Assuming each locality document has a 'name' field
+                    selectedValue={selectedLocality}
+                    handleClick={selectedLocality}
                 />
-                <CustomTextfield
-                    variant={'outlined'}
-                    size={'xl'}
+                <CustomDropdownPicker
+                    title={'Enter your Pincode'}
+                    fontWeight={'light'}
+                    width={'95%'}
+                    color={dark}
                     isRequired={true}
-                    placeholder={'Enter your Pincode'}
-                    labelText={'Pincode'}
-                    handleChangeText={setPincode}
-                    labelColor={dark}
-                    inputFieldColor={dark}
-                    keyboardType={'number-pad'}
-                    errorText={'Please enter your Pincode'}
+                    dropdownPlaceholder={'Select your Locality'}
+                    dropdownData={localities.map(locality => ({ id: locality.id, value: locality.pincode }))} // Assuming each locality document has a 'name' field
+                    selectedValue={selectedLocality}
+                    onValueChange={selectedLocality}
                 />
                 <CustomTextfield
                     variant={'outlined'}
