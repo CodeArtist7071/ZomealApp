@@ -6,6 +6,8 @@ import CustomButton from '../components/CustomButton';
 import { Box } from '@gluestack-ui/themed';
 import { accentBg, dark } from '../constants/Stylesheet';
 import firestore from '@react-native-firebase/firestore';
+import { useUser } from '../context/UserContext';
+
 
 const AddAddress = () => {
     const [firstName, setFirstName] = useState('');
@@ -17,10 +19,12 @@ const AddAddress = () => {
      const [selectedLocality, setSelectedLocality] = useState('');
      const [pincode, setPincode] = useState('');
      const [landmark, setLandmark] = useState('');
+     const[user, setUser] = useUser();
 
      useEffect(() => {
          const fetchLocalities = async () => {
              try {
+                await firestore().collection('Localities').doc().get()
                  const localitySnapshot = await firestore().collection('Localities').get();
                  const localitiesData = localitySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                  setLocalities(localitiesData);
@@ -33,9 +37,10 @@ const AddAddress = () => {
          fetchLocalities();
      }, []);
 
+
      const handleSaveButton = async () => {
          try {
-             await firestore().collection('Users').add({
+             await firestore().collection('Users').get({
                  firstName,
                  lastName,
                  address,
@@ -115,7 +120,7 @@ return (
                     width={'95%'}
                     color={dark}
                     isRequired={true}
-                    dropdownPlaceholder={'Select your Locality'}
+                    dropdownPlaceholder={'Select your Pincode'}
                     dropdownData={localities.map(locality => ({ id: locality.id, value: locality.pincode }))} // Assuming each locality document has a 'name' field
                     selectedValue={selectedLocality}
                     onValueChange={selectedLocality}

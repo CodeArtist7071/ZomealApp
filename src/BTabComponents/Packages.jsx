@@ -51,8 +51,8 @@ const Packages = () => {
     // </View>
     <View style={{width:'95%',marginTop:50, alignSelf:'center'}}>
             <ScrollView>
-              <View  style={{width:'50%',borderRadius:30,height:50,backgroundColor:accentBg}}>
-              <CustomText paddingAxisY={15} textAlign={'center'} color={textColor} text={'Student Package'}/>
+              <View  style={{width:'50%',height:100,borderBottomColor:accentBg, borderBlockColor:textColor}}>
+              <CustomText paddingAxisY={15} fontSize={21.5} textAlign={'center'} color={dark} text={'Student Package'}/>
               </View>
               <Text style={{marginVertical:20}}>Main Course</Text>
               <ScrollView horizontal paddingBottom={10}>

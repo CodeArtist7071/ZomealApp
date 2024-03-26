@@ -1,136 +1,86 @@
-import { Box, Card, HStack, LinearGradient, ScrollView, View } from '@gluestack-ui/themed'
-import {LinearGradient as RNLinearGradient} from 'react-native-linear-gradient'
-import { accentBg, colorGrade1, colorGrade2, dark, textColor } from '../constants/Stylesheet'
-import CustomText from '../components/CustomText'
-import { useEffect, useState,useContext } from 'react'
-import firestore from '@react-native-firebase/firestore'
-import { useIsFocused } from '@react-navigation/native';
-import Animated, { useAnimatedStyle, withTiming, useSharedValue,Easing } from 'react-native-reanimated';
-import {  Text, TouchableOpacity, StyleSheet,Button } from 'react-native';
-import React from 'react'
-import CustomButton from '../components/CustomButton'
+import React, { useState, useEffect } from "react";
+import { View, Text, Switch, Button, TouchableOpacity } from "react-native";
+import firestore from '@react-native-firebase/firestore'; // Import firestore from react-native-firebase
 
-const MenuCard = () => {
-  const { selectedService } = useContext(ServiceContext);
+const ServicePackage = () => {
+  const [nonVeg, setNonVeg] = useState(false);
+  const [veg, setVeg] = useState(false);
+  const [mealType, setMealType] = useState('');
 
-  // Assuming you have different menus for each service
-  let menuText = '';
-  switch (selectedService) {
-    case 'Both':
-      menuText = 'Both Lunch and Dinner Menu';
-      break;
-    case 'Lunch':
-      menuText = 'Lunch Menu';
-      break;
-    case 'Dinner':
-      menuText = 'Dinner Menu';
-      break;
-    default:
-      menuText = 'No menu selected';
-  }
+  // Retrieve data from Firestore
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    // Retrieve data from Firestore based on non-veg and veg options and meal type
+    try {
+      const data = await firestore().collection('servicePackages').where('isNonVeg', '==', nonVeg).where('isVeg', '==', veg).where('mealType', '==', mealType).limit(5).get();
+      // Handle retrieved data
+      data.forEach(doc => {
+        console.log(doc.data());
+      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const createPackage = async () => {
+    // Create a new package in Firestore
+    try {
+      await firestore().collection('servicePackages').add({
+        isNonVeg: nonVeg,
+        isVeg: veg,
+        mealType: mealType,
+        // Add other package details as needed
+      });
+      console.log('Package created successfully');
+    } catch (error) {
+      console.error('Error creating package:', error);
+    }
+  };
+
+  const updatePackage = async (packageId) => {
+    // Update an existing package in Firestore
+    try {
+      await firestore().collection('servicePackages').doc(packageId).update({
+        isNonVeg: nonVeg,
+        isVeg: veg,
+        mealType: mealType,
+        // Add other fields to update
+      });
+      console.log('Package updated successfully');
+    } catch (error) {
+      console.error('Error updating package:', error);
+    }
+  };
 
   return (
-    <View style={styles.menuCard}>
-      <Text>{menuText}</Text>
+    <View>
+      <View>
+        <Text>Non-Veg:</Text>
+        <Switch value={nonVeg} onValueChange={(value) => setNonVeg(value)} />
+      </View>
+      <View>
+        <Text>Veg:</Text>
+        <Switch value={veg} onValueChange={(value) => setVeg(value)} />
+      </View>
+      <View>
+        <TouchableOpacity onPress={() => setMealType('both')}>
+          <Text>Both Lunch & Dinner</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setMealType('lunch')}>
+          <Text>Lunch Only</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setMealType('dinner')}>
+          <Text>Dinner Only</Text>
+        </TouchableOpacity>
+      </View>
+      <Button title="Fetch Data" onPress={fetchData} />
+      <Button title="Create Package" onPress={createPackage} />
+      <Button title="Update Package" onPress={() => updatePackage('packageId')} />
     </View>
   );
 };
 
-
-// Create a context to manage the selected service
-const ServiceContext = React.createContext();
-const Services =()=>{
-  const [services, setServices] = useState();
-  const isFocused = useIsFocused();
-  const translateY = useSharedValue(300);
-  const [selectedService, setSelectedService] = useState('Both');
-
-useEffect(() => {
-    translateY.value = withTiming(isFocused ? 0 : 1000, { duration: 1000,easing:Easing.out(Easing.exp) });
-  }, [isFocused]);
-
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{translateY:translateY.value}]
-    };
-  });
-
-  useEffect(()=>{
-    const unsubscribe = firestore().collection('Services')
-    .onSnapshot(querySnaphot => {
-      const data = []
-      querySnaphot.forEach(documentSnapshot =>{
-        const {} = documentSnapshot.data()
-        data.push({
-          id:documentSnapshot.id
-        })
-      })
-      setServices(data)
-    })
-    return ()=> unsubscribe();
-  },[])
-    return(
-   
-    <LinearGradient
-       colors={[colorGrade1,colorGrade2]}
-       as={RNLinearGradient}>
-        <Box w={'100%'} h={'20%'}/>
-        <Animated.View style={[animatedStyle]}>
-        <Card w={'100%'} h={'90%'} borderTopLeftRadius={30} borderTopEndRadius={30}>
-        <ServiceContext.Provider value={{ selectedService, setSelectedService }}>
-        <HStack alignSelf='center' justifyContent='space-between'>
-          <ServiceButton service="Both" />
-          <ServiceButton service="Lunch" />
-          <ServiceButton service="Dinner" />
-        </HStack>
-        {selectedService && <MenuCard />}
-    </ServiceContext.Provider>
-        </Card>
-        </Animated.View>
-    </LinearGradient>
-   
-      
-    )
-    }
-export default Services
-
-
-const ServiceButton = ({ service }) => {
-  const { setSelectedService } = useContext(ServiceContext);
-
-  const handlePress = () => {
-    setSelectedService(service);
-  };
-
-  return (
-    <CustomButton width={'30%'} marginHorizontal={10} borderRadius={30} height={45} bgColor={accentBg} color={textColor} title={service} handlePressEvent={handlePress} />
-  );
-};
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    marginBottom: 20,
-  },
-  menuCard: {
-    backgroundColor: '#f0f0f0',
-    padding: 20,
-    borderRadius: 10,
-  },
-});
-
-
-
-
-
+export default ServicePackage;

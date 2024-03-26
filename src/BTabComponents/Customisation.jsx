@@ -1,101 +1,79 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Switch, Button, StyleSheet } from 'react-native';
+import { Box, HStack, Card, Image, VStack } from '@gluestack-ui/themed';
+import CustomButtonIcon from '../components/CustomIconButton';
+import { Minus, Plus } from 'lucide-react-native';
+import CustomText from '../components/CustomText';
+import { accentBg, dark, textColor } from '../constants/Stylesheet';
+import img from '../assets/Images/chicken_biryani.jpg'
+import CustomButton from '../components/CustomButton';
+const items = [
+  {
+    id: 0,
+    category: "Rice",
+    data: [{id:0,src:img},
+      { id: 1, name: 'Usna Rice', description: "With a nutty flavor and firm consistency, it's ideal for pilafs and stir-fries." },
+      { id: 2, name: 'Arwa Rice', description: "Renowned for its aromatic fragrance and delicate texture, is a staple in many cuisines." },
+    ],
+  },
+  
+];
 
 const Customisation = () => {
-  const [riceQuantity, setRiceQuantity] = useState(0);
-  const [chickenQuantity, setChickenQuantity] = useState(0);
+  const [isData1Active, setIsData1Active] = useState(false); // Toggle between data 1 and data 2
+  const [quantity, setQuantity] = useState(items.map(() => 0)); // Initialize quantity for each category
 
-  const ricePrice = 10;
-  const chickenPrice = 70;
+  // Toggle the active data
+  const toggleSwitch = () => setIsData1Active(previousState => !previousState);
 
-  const incrementRice = () => {
-    setRiceQuantity(riceQuantity + 1);
+  // Increment quantity for the active data
+  const incrementQuantity = (index) => {
+    setQuantity(quantity.map((qty, qtyIndex) => qtyIndex === index ? qty + 1 : qty));
   };
 
-  const decrementRice = () => {
-    if (riceQuantity > 0) {
-      setRiceQuantity(riceQuantity - 1);
-    }
+  // Decrement quantity for the active data, ensuring it doesn't go below 0
+  const decrementQuantity = (index) => {
+    setQuantity(quantity.map((qty, qtyIndex) => (qtyIndex === index && qty > 0) ? qty - 1 : qty));
   };
-
-  const incrementChicken = () => {
-    setChickenQuantity(chickenQuantity + 1);
-  };
-
-  const decrementChicken = () => {
-    if (chickenQuantity > 0) {
-      setChickenQuantity(chickenQuantity - 1);
-    }
-  };
-
-  const totalPrice = (ricePrice * riceQuantity) + (chickenPrice * chickenQuantity);
 
   return (
-    
-    <View style={styles.card}>
-      <View style={styles.productRow}>
-        <Text>Rice - Rs. {ricePrice}</Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={decrementRice} style={styles.button}>
-            <Text>-</Text>
-          </TouchableOpacity>
-          <Text>{riceQuantity}</Text>
-          <TouchableOpacity onPress={incrementRice} style={styles.button}>
-            <Text>+</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      <View style={styles.productRow}>
-        <Text>Chicken - Rs. {chickenPrice}</Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={decrementChicken} style={styles.button}>
-            <Text>-</Text>
-          </TouchableOpacity>
-          <Text>{chickenQuantity}</Text>
-          <TouchableOpacity onPress={incrementChicken} style={styles.button}>
-            <Text>+</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      <Text style={styles.totalPrice}>Total Price: Rs. {totalPrice}</Text>
-    </View>
+    <Box style={{ marginTop: 100 }} justifyContent='center'>
+      {items.map((category, index) => (
+        <Card key={index} w={'90%'} alignSelf='center' style={styles.card}>
+          <HStack justifyContent='space-between'>
+            <Box w={'50%'}>
+              <Box paddingVertical={5} alignSelf='flex-start'>
+              <Switch onValueChange={toggleSwitch} value={isData1Active} />
+              </Box>
+            <VStack>
+              <CustomText width={'60%'} fontSize={15.5} color={dark} text={isData1Active ? category.data[1].name  : category.data[2].name} />
+              <CustomText width={'95%'} paddingAxisY={10} color={dark} text={isData1Active ? category.data[1].description :category.data[2].description} />
+            </VStack>
+            </Box>
+            <VStack w={'50%'}>
+            <Image alt='food' style={{width:'$full',height:150,borderRadius:10}} source={img}/>
+            <HStack width={'40%'} padding={2} borderColor={textColor} borderWidth={1} borderRadius={10} marginTop={'-$5'} backgroundColor={accentBg} justifyContent='center' alignSelf='center' alignItems='center'>
+                <CustomButtonIcon iconColor={textColor} size={'md'} buttonIcon={Minus} onPress={() => decrementQuantity(index)} />
+                <Box style={{ width: 25, height: 25 }}>
+                  <CustomText color={textColor} fontSize={15.5} textAlign={'center'} text={`${quantity[index]}`} />
+                </Box>
+                <CustomButtonIcon iconColor={textColor} size={'md'} buttonIcon={Plus} onPress={() => incrementQuantity(index)} />
+            </HStack>
+            </VStack>
+          </HStack>
+        </Card>
+      ))}
+    <CustomButton/>  
+    </Box>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-    padding: 20,
-    margin: 10,
-    marginTop:200,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 8,
-  },
-  productRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     marginBottom: 20,
   },
-  buttonContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  button: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 5,
-    marginHorizontal: 10,
-    width: 30,
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  totalPrice: {
-    fontSize: 16,
-    fontWeight: 'bold',
+  toggleContainer: {
+    marginBottom: 10,
   },
 });
 

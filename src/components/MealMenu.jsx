@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { HStack, Image, VStack } from '@gluestack-ui/themed';
+import { Box, Card, HStack, Image, ScrollView, VStack } from '@gluestack-ui/themed';
 import CustomText from './CustomText';
-import { dark } from '../constants/Stylesheet';
+import { accentBg, dark } from '../constants/Stylesheet';
 import firestore from '@react-native-firebase/firestore'; // Import firestore
+import CustomDivider from './CustomDivider';
+
 
 const WeeklyMenuCollection = firestore().collection('weeklyMenu');
 
@@ -34,32 +36,34 @@ const MealMenu = () => {
   console.log(todaysMenu.Lunch)
 
   return (
-    <View style={styles.container}>
+    <View>
       <CustomText color={dark} fontSize={17.5} fontWeight={600} textAlign={'center'} text={"Today's Menu"} />
-      <VStack justifyContent='space-between'>
-        <View style={styles.mealSection}>
-          <Text style={styles.mealTitle}>Lunch</Text>
+      <CustomDivider width={'40%'} height={2} bgColor={accentBg} paddingAxisY={10} alignSelf={'center'}/>
+      <HStack justifyContent='space-between'>
+        <Card w={'50%'} mr={4}>
+        <Text style={{color:dark,fontSize:15.5,fontWeight:'500'}}>Lunch</Text>
           {/* <Image source={{uri:""}} /> */}
           {loading ? (
             <Text>Loading...</Text>
           ) : (
-            todaysMenu.Lunch.map((item, index) => (
-              <Text key={index}>{item}</Text>
+               todaysMenu.Lunch.map((item, index) => (
+              <Text style={{color:dark}} key={index}>{item}</Text>
             ))
           )}
-        </View>
-        <View style={styles.mealSection}>
-          <Text style={styles.mealTitle}>Dinner</Text>
+        </Card>
+       <Card w={'50%'} m={2}>
+       <Text style={{color:dark,fontSize:15.5, fontWeight:'500'}}>Dinner</Text>
           {/* <Image source={{uri:""}}/> */}
           {loading ? (
             <Text>Loading...</Text>
           ) : (
-            todaysMenu.Dinner.map((item,index) => (
-              <Text key={index}>{item}</Text>
+             todaysMenu.Dinner.map((item,index) => (
+              <Text style={{color:dark}} key={index}>{item}</Text>
             ))
           )}
-        </View>
-      </VStack>
+        </Card>  
+       
+      </HStack>
     </View>
   );
 };

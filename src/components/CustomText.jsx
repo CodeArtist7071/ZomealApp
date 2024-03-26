@@ -1,5 +1,5 @@
 import { Text, Box } from "@gluestack-ui/themed"
-const CustomText = ({text,fontSize,color,width,height,fontWeight,justifyContent,textAlign,paddingAxisY,paddingTop,paddingBottom})=>{
+const CustomText = ({text,fontSize,color,width,height,fontWeight,justifyContent,textAlign,paddingAxisY,paddingTop,paddingBottom,marginLeft})=>{
 return(
     <Box  w={width}
     h={height}>
@@ -7,6 +7,7 @@ return(
     pt={paddingTop} 
     pb={paddingBottom} 
     py={paddingAxisY}
+    ml={marginLeft}
     
     style={{
         fontSize:fontSize,

@@ -1,7 +1,7 @@
 import { Divider, Box } from '@gluestack-ui/themed'
 import React from 'react'
 
-const CustomDivider=({width,height,justifyContent,alignSelf,bgColor,borderColor,paddingAxisY})=>{
+const CustomDivider=({width,height,justifyContent,alignSelf,bgColor,borderColor,paddingAxisY,marginLeft})=>{
 return(
     <Box py={paddingAxisY}>
        <Divider 
@@ -11,6 +11,7 @@ return(
            alignSelf={alignSelf}
            borderColor={borderColor}
            bgColor={bgColor}
+           marginLeft={marginLeft}
            />
     </Box>
        

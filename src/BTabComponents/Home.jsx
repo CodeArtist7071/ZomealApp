@@ -39,28 +39,29 @@ const cardHeight = height * .3
     const handleButtonColor = (color) => {
       setColor(!color)
       setActive(!isActive)
+      
      }
 
 return(
   <Animated.View style={[animatedStyle]}>
   <Box h={'100%'}>
-    <ScrollView h={'$88'} marginTop={80}>
+    <ScrollView h={'$90'} marginTop={80}>
         <CustomAnimationCard cardHeight={cardHeight} cardWidth={cardWidth} CardBgColor={'white'}/>
         <Box flex={1} mb={'$10'} justifyContent='center' alignItems='center'>
-        <Card width={'95%'} height={200}>
+        <Box width={'95%'}>
           <MealMenu/>
-        </Card>
+        </Box>
         </Box> 
         <Box flex={1} my={'$10'} justifyContent='center' alignItems='center'>
         <Card width={'95%'} height={200}/>
         </Box> 
         
     </ScrollView>
-    <Card py={'$4'} backgroundColor={textColor} borderTopLeftRadius={30} borderTopEndRadius={30}>
-    <HStack width={'80%'} py={'$6'} marginLeft={'auto'} marginRight={'auto'} justifyContent='space-between' alignItems='center'>
-    <CustomButton borderRadius={50} width={80} height={80} shadowColor={dark} shadowOffsetWidth={10} shadowOffsetHeight={10} shadowOpacity={.5} shadowRadius={3.84} bgColor={accentBg} handlePressEvent={()=>navigation.navigate('Balance')}/>
+    <Card h={'$15'} backgroundColor={'$trueGray100'} borderTopLeftRadius={30} borderTopEndRadius={30}>
+    <HStack width={'80%'} marginTop={'-$16'} marginLeft={'auto'} marginRight={'auto'} justifyContent='center' alignItems='center'>
+    <Box padding={'$3'} bgColor='$trueGray100' borderRadius={50}>
     <CustomButton borderRadius={50} color={textColor} fontSize={12.5} title={isActive ? 'Active' : 'Cancel'} width={80} height={80} shadowColor={'#000'} shadowOffsetWidth={2} shadowOffsetHeight={10} shadowOpacity={.9} shadowRadius={4} rounded={'$full'} bgColor={accentBg} handlePressEvent={handleButtonColor}/>
-    <CustomButton borderRadius={50} width={80} height={80} shadowColor={dark} shadowOffsetWidth={10} shadowOffsetHeight={10} shadowOpacity={.5} shadowRadius={3.84} bgColor={accentBg} handlePressEvent={()=>navigation.navigate('Calories')}/>
+    </Box>
     </HStack>
     </Card>
     </Box>

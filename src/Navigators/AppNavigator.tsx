@@ -10,7 +10,6 @@ import BottomNavigation from "./BottomNavigation";
 import { Balance, Calories } from "../components/CalAction";
 import CustomSpinner from "../components/CustomSpinner";
 import CalActionNMore from "../screens/CalActionNMore";
-import PincodePrompt from "../screens/PincodePrompt";
 import SubscriptionPrompt from "../screens/SubscriptionPrompt";
 import Settings from "../screens/Settings";
 import Notification from "../screens/Notification";
@@ -19,6 +18,13 @@ import Subscription from "../screens/Subscription";
 import FAQ from "../screens/FAQ";
 import Report from "../screens/Report";
 import Feedback from "../screens/Feedback";
+import { UserProvider } from "../context/UserContext";
+import CancelService from "../screens/CancelService";
+import PincodePrompt from "../screens/PincodePrompt"
+import AddressPrompt from "../screens/AddressPrompt"
+import { Package } from "lucide-react-native";
+import PackagePrompt from "../screens/PackagePrompt";
+import MenuPrompt from "../screens/MenuPrompt";
 
 const Stack = createNativeStackNavigator();
 type User = FirebaseAuthTypes.User | null;
@@ -35,12 +41,14 @@ const AppNavigator = () => {
   }, []);
 
   return (
+    <UserProvider>
     <NavigationContainer>
       <Stack.Navigator>
         {user ? (
           // If user is authenticated, show the Dashboard and other screens
           <>
-            <Stack.Screen
+          <Stack.Screen component={PincodePrompt} name="PincodePrompt" options={{headerTransparent:true,headerTitle:''}}/>
+          <Stack.Screen
               component={Dashboard}
               name="Dashboard"
               options={{ headerShown: false }}
@@ -53,8 +61,12 @@ const AppNavigator = () => {
               name="Address"
               options={{ headerShown: true, headerShadowVisible: true }}
             />
+            <Stack.Screen component={AddressPrompt} name="AddressPrompt"/>
+            <Stack.Screen component={PackagePrompt} name="PackagePrompt" options={{headerTitle:'',headerTransparent:true}}/>
+            <Stack.Screen component={MenuPrompt} name="MenuPrompt"/>
             <Stack.Screen component={Settings} name="Settings" />
             <Stack.Screen component={Profile} name="Profile" />
+            <Stack.Screen component={CancelService} name="Cancel Service"/>
             <Stack.Screen
               component={Subscription}
               name="Subscription"
@@ -66,6 +78,7 @@ const AppNavigator = () => {
             <Stack.Screen component={Report} name="Report" />
             <Stack.Screen component={Feedback} name="Feedback" />
             <Stack.Screen component={Notification} name="Notify" />
+
           </>
         ) : (
           // If user is not authenticated, show the LoginRedirect and Sign In screens
@@ -84,6 +97,7 @@ const AppNavigator = () => {
         )}
       </Stack.Navigator>
     </NavigationContainer>
+    </UserProvider>
   );
 };
 
