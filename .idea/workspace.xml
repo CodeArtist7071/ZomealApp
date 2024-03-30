@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d3ab232f-f267-4a1b-988d-40f7d118b503" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/8.3/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/8.3/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/8.3/dependencies-accessors/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/8.3/dependencies-accessors/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/8.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/8.3/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/8.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/8.3/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/8.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/8.3/fileHashes/fileHashes.bin" afterDir="false" />
@@ -18,25 +16,11 @@
       <change beforePath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/8.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/8.3/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BTabComponents/Customisation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/BTabComponents/Customisation.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BTabComponents/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/BTabComponents/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BTabComponents/Packages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/BTabComponents/Packages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BTabComponents/Services.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/BTabComponents/Services.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Navigators/AppNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navigators/AppNavigator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Navigators/BottomNavigation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navigators/BottomNavigation.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/PhoneSign.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/PhoneSign.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomAnimationCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomAnimationCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomButton.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomCheckbox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomCheckbox.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MealMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MealMenu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/CancelService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/CancelService.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/FoodPackages.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/FoodSelection.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/LoginRedirect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/LoginRedirect.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/Loginscreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Loginscreen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CustomDropdownPicker.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomDropdownPicker.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GradientButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GradientButton.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/MenuPrompt.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MenuPrompt.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/PackagePrompt.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PackagePrompt.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/PincodePrompt.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PincodePrompt.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

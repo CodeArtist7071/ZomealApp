@@ -26,7 +26,7 @@ const MenuPrompt=({navigation})=>{
   },[]);
 
   function updateData() {
-   navigation.navigate('Dashboard')
+   navigation.navigate('dashboard')
   }
     return(
     <Box>

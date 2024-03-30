@@ -14,8 +14,8 @@ const CustomDropdownPicker = ({dropdownData,handleClick,dropdownPlaceholder,titl
             onClick={handleClick}
             placeHolder={dropdownPlaceholder}
             data={dropdownData}
-            dropDownStyle={{backgroundColor:'#efefef', height:200}}
-            itemTextStyle={{color:'black', height:100, lineHeight:100}}
+            dropDownStyle={{backgroundColor:'#efefef', marginTop:10, height:200}}
+            itemTextStyle={{color:'black',height:150, lineHeight:150}}
             containerStyle={{height:50}}
           />
         </View>

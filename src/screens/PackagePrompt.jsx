@@ -1,56 +1,110 @@
-import { Box, Button, Card, HStack, LinearGradient, Pressable, Text, View } from '@gluestack-ui/themed'
-import React, { useState } from 'react'
-import {LinearGradient as RNLinearGradient} from 'react-native-linear-gradient'
-import CustomButton from '../components/CustomButton'
-import { accentBg, colorGrade1, colorGrade2, dark, textColor } from '../constants/Stylesheet'
-import CustomText from '../components/CustomText'
-import { TouchableOpacity } from 'react-native'
-import GradientButton from '../components/GradientButton'
-import CustomDivider from '../components/CustomDivider'
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Box, Card, Divider, HStack, LinearGradient, Text } from '@gluestack-ui/themed';
+import GradientButton from '../components/GradientButton';
+import firestore from '@react-native-firebase/firestore';
+import { accentBg, colorGrade1, colorGrade2, textColor } from '../constants/Stylesheet';
+import CustomPresable from '../components/CustomPressable';
+import { LinearGradient as RNLinearGradient } from 'react-native-linear-gradient';
 
 
 
-const PackagePrompt = ({navigation})=>{
+const PackagePrompt = ({ navigation }) => {
+  const [selectedButton, setSelectedButton] = useState(1);
+  const [packageData, setPackageData] = useState(null);
+  const [loading,setLoading] = useState(true)
 
-    const [selectedButton, setSelectedButton] = useState(1); // State to track the selected button
-
-    const handleButtonPress = (buttonIndex) => {
-      setSelectedButton(buttonIndex); // Update the selected button state
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const documentSnapshot = await firestore()
+          .collection('Packages')
+          .doc('packageDetails')
+          .get();
+        if (documentSnapshot.exists) {
+          const data = documentSnapshot.data();
+          setPackageData(data);
+          console.log(data)
+        }
+      } catch (error) {
+        console.error('Error fetching package details:', error);
+      }finally{
+        setLoading(false)
+      }
     };
-  
-return(
-<View flex={1} justifyContent='center' alignContent='center'>
-        <CustomText width={'70%'} marginLeft={20} paddingBottom={20} fontSize={17.5} fontWeight={500} color={dark} textAlign={'left'} text={'Choose the Perfect Package for Your Taste...!'}/>
-        <HStack justifyContent='space-between' alignSelf='center' marginBottom={20} style={{width:'95%',height:50,borderRadius:50,backgroundColor:colorGrade2}}>
-        <GradientButton
-        title="Button 1"
-        onPress={() => handleButtonPress(1)}
-        isSelected={selectedButton === 1}
-      />
-      <GradientButton
-        title="Button 2"
-        onPress={() => handleButtonPress(2)}
-        isSelected={selectedButton === 2}
-      />
-      <GradientButton
-        title="Button 3"
-        onPress={() => handleButtonPress(3)}
-        isSelected={selectedButton === 3}
-      />
+    fetchData();
+  }, []);
+
+  const handleButtonPress = (buttonIndex) => {
+    setSelectedButton(buttonIndex);
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.buttonContainer}>
+        <HStack justifyContent="space-between" alignSelf="center" marginBottom={20} style={styles.buttonGroup}>
+          <GradientButton title="Student" onPress={() => handleButtonPress(1)} isSelected={selectedButton === 1} />
+          <GradientButton title="Corporate" onPress={() => handleButtonPress(2)} isSelected={selectedButton === 2} />
+          <GradientButton title="Vendor" onPress={() => handleButtonPress(3)} isSelected={selectedButton === 3} />
         </HStack>
-          <Card style={{width:'95%',alignSelf:'center',borderRadius:30}}>
-        <Box style={{height:450}}>
-        
-        </Box>
-        <TouchableOpacity onPress={()=>navigation.navigate('MenuPrompt')}>
-        <RNLinearGradient
-        style={{width:'60%',height:55,borderRadius:50,alignSelf:'center'}}
-        colors={[colorGrade1,colorGrade2]}> 
-        <Text textAlign='center'alignSelf='center'color={textColor} marginTop={15}>Buy Now</Text>
-        </RNLinearGradient>
-        </TouchableOpacity>
-    </Card>
-</View>
-)
-}
-export default PackagePrompt
+      </View>
+      <View style={styles.cardsContainer}>
+        {packageData && (
+          <Card style={styles.card}>
+            <Text style={{textAlign:'center', fontSize:21.5, fontWeight:500}}>{selectedButton === 1 ? 'Student Package' : selectedButton === 2 ? 'Corporate Package' : 'Vendor Package'}</Text>
+            <HStack marginTop={30} alignSelf='center'>
+              <Text style={{fontSize:60.5, fontWeight:500}}>&#8377;{packageData[selectedButton === 1 ? 'Student' : selectedButton === 2 ? 'Corporate' : 'Vendor'].price}</Text>
+              <Divider marginHorizontal={12} width={3} orientation='vertical'/>
+              <Text style={{fontSize:30.5,width:100}}>per Month</Text>
+            </HStack>
+            <Text style={{position:'absolute',bottom:100,left:20}}>{packageData[selectedButton === 1 ? 'Student' : selectedButton === 2 ? 'Corporate' : 'Vendor'].description}</Text>
+           <Box style={{position:'absolute'}}  alignSelf='center' bottom={10}>
+           <TouchableOpacity onPress={''}>
+            <LinearGradient style={{width:150,height:50,borderRadius:50}} colors={[colorGrade1,colorGrade2]} as={RNLinearGradient}>
+             <Text style={{textAlign:'center'}} lineHeight={50} color={textColor} alignSelf='center'>Submit</Text>
+            </LinearGradient>
+           </TouchableOpacity>
+           </Box>
+          </Card>
+        )}
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  card:{
+   width:'100%',
+   height:600
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    marginBottom: 20,
+  },
+  cardsContainer: {
+    width: '90%',
+  },
+  buttonGroup: {
+    width: '95%',
+    height: 50,
+    borderRadius: 50,
+    backgroundColor:colorGrade2
+  },
+  cardContainer: {
+    borderWidth: 1,
+    borderColor: 'grey',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10
+  },
+  cardTitle: {
+    fontWeight: 'bold'
+  }
+});
+
+export default PackagePrompt;

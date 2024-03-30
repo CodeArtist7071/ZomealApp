@@ -3,11 +3,11 @@ import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 const GradientButton = ({ title, onPress, isSelected }) => {
-  const colors = isSelected ? ['#FF5733', '#FFC300'] : ['#f7b733', '#f7b733'];
+  const colorscheme = isSelected ? ['#FF5733', '#FFC300'] : ['#f7b733', '#f7b733'];
 
   return (
     <TouchableOpacity onPress={onPress}>
-      <LinearGradient colors={colors} style={styles.button}>
+      <LinearGradient colors={colorscheme} style={styles.button}>
         <Text style={styles.buttonText}>{title}</Text>
       </LinearGradient>
     </TouchableOpacity>
