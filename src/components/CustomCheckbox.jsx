@@ -1,14 +1,18 @@
-import { Text, Center, Box, Icon, } from '@gluestack-ui/themed';
+import { Text, Center, Box, Icon, Checkbox,CheckboxIndicator,CheckboxIcon,CheckboxLabel } from '@gluestack-ui/themed';
 import React from 'react-native';
 Box;
 const CustomCheckbox = ({
-    text, fontWeight,name,size
+    size,as,isDisabled,isInvalid,label
 }) => {
-    return <Box flex={'$1'} display='flex'>
-        <Icon as={name} size={size} name={"CheckIcon"} />
-        <Text size={size} fontWeight={fontWeight}>
-            {text}
-        </Text>
-    </Box>;
+    return (
+        <Checkbox   size={size} isInvalid={isInvalid} isDisabled={isDisabled}   >
+        <CheckboxIndicator mr="$2">
+          <CheckboxIcon as={as}/>
+        </CheckboxIndicator>
+        <CheckboxLabel>{label}</CheckboxLabel>
+      </Checkbox>
+    )
+   
+
 };
 export default CustomCheckbox;

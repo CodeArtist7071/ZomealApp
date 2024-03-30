@@ -1,7 +1,6 @@
 import React, { useState, useEffect,useRef,useContext, createContext } from "react";
 import { View, Text, TouchableOpacity, TextInput,Button,Keyboard } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { useUser } from "../context/UserContext";
 import auth, { firebase } from '@react-native-firebase/auth';
 import Verifycode from "../screens/Verifycode"
 import Loginscreen from "../screens/Loginscreen";
@@ -26,9 +25,9 @@ const PhoneSignIn = ({navigation}) => {
   const [verificationCode, setVerificationCode] = useState('');
   const [verifying, setVerifying] = useState(false)
   const [logging, setLogging] = useState(false)
-  const [phoneNumber, setPhoneNumber] = useState('');
   const [confirmation, setConfirmation] = useState(null);
-
+  const [phone, setPhone] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   
   
   useEffect(() => {
@@ -42,10 +41,10 @@ const PhoneSignIn = ({navigation}) => {
     }
     },[])
 
-
-    async function createUserDocument(userId, phoneNumber) {
+  
+    async function createUserDocument(userId) {
       const userRef = firestore().collection('users').doc(userId);
-    
+      
       try {
         const doc = await userRef.get();
         if (!doc.exists) {
@@ -66,18 +65,20 @@ const PhoneSignIn = ({navigation}) => {
     }
     
 
-  function onAuthStateChanged(user) {
+  function onAuthStateChanged(user,phoneNumber) {
     // if (initializing) setInitializing(false);
     if (user) {
       // Handle successful login here
       console.log('User is logged in')
       setUser(user.uid)
-      createUserDocument(user.uid,number)
+      setNumber(user.number)
+      createUserDocument(user.uid,phoneNumber)
       navigation.navigate('Dashboard')
     }else{
      console.log('User is not logged in')
     }
   }
+
 
 async function signInWithPhoneNumber(phoneNumber) {
    const confirmation = await auth().signInWithPhoneNumber(phoneNumber,true);
@@ -105,8 +106,10 @@ const resendOTP = async () => {
       await confirm.confirm(verificationCode); // Use the stored value
       const userdata = auth().currentUser.uid;
       const userdata2 = auth().currentUser.getIdToken(true)
-      const userdata3 = auth().currentUser.phoneNumber // Retrieve the user ID
-      console.log(userdata,userdata2,userdata3);
+      const userdata4 = auth().currentUser.getIdTokenResult(true)
+      const numberData = auth().currentUser.phoneNumber //Retireve the phoneNumber
+      setPhoneNumber(numberData)
+      console.log(userdata,userdata2,phoneNumber);
       console.log('Good job! Code confirmed successfully.');
     } catch (error) {
       console.log('Error confirming code:', error.message);

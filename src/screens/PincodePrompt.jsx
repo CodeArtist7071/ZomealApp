@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import CustomIcon from '../components/CustomIcons';
@@ -10,27 +10,49 @@ import { ButtonIcon, Card, HStack, Icon, LinearGradient, Pressable } from '@glue
 import CustomText from '../components/CustomText';
 import { LinearGradient as RNLinearGradient } from 'react-native-linear-gradient';
 import CustomDivider from '../components/CustomDivider';
+import firestore from "@react-native-firebase/firestore"
+
 
 const data = [
-  { label: 'Item 1', value: '1' },
-  { label: 'Item 2', value: '2' },
-  { label: 'Item 3', value: '3' },
-  { label: 'Item 4', value: '4' },
-  { label: 'Item 5', value: '5' },
-  { label: 'Item 6', value: '6' },
-  { label: 'Item 7', value: '7' },
-  { label: 'Item 8', value: '8' },
+  { label: 'Item 1', val: '1' },
+  { label: 'Item 2', val: '2' },
+  { label: 'Item 3', val: '3' },
+  { label: 'Item 4', val: '4' },
+  { label: 'Item 5', val: '5' },
+  { label: 'Item 6', val: '6' },
+  { label: 'Item 7', val: '7' },
+  { label: 'Item 8', val: '8' },
 ];
 
 const DropdownComponent = ({navigation}) => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+  const [localities,setLocalities] = useState('')
+  const [pinc,setPinc] = useState('')
+
+  const pin = [ { check: 'Item 1', val: '1' }]
+
+
+useEffect(()=>{
+  const fetchingData= async()=>{
+   const docRef = await firestore().collection('Localities').get()
+   .then((querySnapshot)=>{
+    querySnapshot.forEach((doc)=>{
+      const Data = doc.data()
+      console.log(Data.pincode)
+      setPinc(Data.pincode)
+    })
+   })
+  }
+  fetchingData();
+},[])
+
 
   function handlePincodeEvent(){
-      console.log('Checking')
+      
+      console.log(value)
       navigation.navigate('PackagePrompt')  
   }
-
   return (
     <LinearGradient
     as={RNLinearGradient}
@@ -49,19 +71,19 @@ const DropdownComponent = ({navigation}) => {
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={styles.iconStyle}
-        data={data}
-        
+        itemTextStyle={{color:dark}}
+        data={[pinc]}
         search
         maxHeight={300}
-        labelField="label"
-        valueField="value"
+        labelField="id"
+        valueField="pincode"
         placeholder={!isFocus ? 'Select item' : '...'}
         searchPlaceholder="Search your Pincode...."
         value={value}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         onChange={item => {
-          setValue(item.value);
+          setValue(item.pincode);
           setIsFocus(false);
         }}
         renderLeftIcon={() => (
@@ -90,7 +112,7 @@ export default DropdownComponent;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     padding: 16,
   },
   dropdown: {
@@ -106,7 +128,7 @@ const styles = StyleSheet.create({
   },
   label: {
     position: 'absolute',
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     left: 22,
     top: 8,
     zIndex: 999,

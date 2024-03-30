@@ -1,70 +1,90 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, Text } from 'react-native';
+import GradientButton from '../components/GradientButton';
+import { HStack } from '@gluestack-ui/themed';
+import { colorGrade2 } from '../constants/Stylesheet';
 import firestore from '@react-native-firebase/firestore';
-import CustomText from '../components/CustomText';
-import { Card, HStack, ScrollView, Text } from '@gluestack-ui/themed';
-import { accentBg, dark, textColor } from '../constants/Stylesheet';
-import CustomCard from '../components/CustomCard';
 
+const Card = ({ title, content }) => (
+  <View style={styles.cardContainer}>
+    <Text style={styles.cardTitle}>{title}</Text>
+    <Text>{content}</Text>
+  </View>
+);
 
 const Packages = () => {
-  // const [packages, setPackages] = useState();
-  // useEffect(() => {
-  //   const unsubscribe = firestore()
-  //     .collection('Packages')
-  //     .onSnapshot(querySnapshot => {
-  //       const data = [];
-  //       querySnapshot.forEach(documentSnapshot => {
-  //         const { type,vegDay,nonVegDay,description } = documentSnapshot.data();
-  //         data.push({
-  //           id: documentSnapshot.id,
-  //           type,
-  //           vegDay,
-  //           nonVegDay,
-  //           description
-  //         });
-  //       });
-  //       setPackages(data);
-  //     });
+  const [selectedButton, setSelectedButton] = useState(1);
+  const [packageData, setPackageData] = useState(null);
 
-  //   // Unsubscribe from snapshot listener when component unmounts
-  //   return () => unsubscribe();
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const documentSnapshot = await firestore().collection('Packages').doc('packageDetails').get();
+        if (documentSnapshot.exists) {
+          const subscriptionData = documentSnapshot.data();
+          setPackageData(subscriptionData);
+          console.log(subscriptionData)
+        }
+      } catch (error) {
+        console.error('Error fetching package details:', error);
+      }
+    };
+    fetchData();
+  }, []);
 
-  // const renderPackage = ({ item }) => (
-  //   <Card width={'95%'} height={250} alignSelf='center' style={{marginBottom:40}}>
-  //       <CustomText textAlign={'center'} fontSize={20} color={dark} text={item.type}/>
-  //       <CustomText text={item.price}/>
-  //       <CustomText text={item.vegDay}/>
-  //       <CustomText text={item.nonVegDay}/>
-  //       <CustomText text={item.description}/>
-  //  </Card>
-  // );
+  const handleButtonPress = buttonIndex => {
+    setSelectedButton(buttonIndex);
+  };
 
   return (
-    // <View style={{marginTop:100}}>
-    //   <FlatList
-    //     data={packages}
-    //     renderItem={renderPackage}
-    //     keyExtractor={item => item.id}
-    //   />
-    // </View>
-    <View style={{width:'95%',marginTop:50, alignSelf:'center'}}>
-            <ScrollView>
-              <View  style={{width:'50%',height:100,borderBottomColor:accentBg, borderBlockColor:textColor}}>
-              <CustomText paddingAxisY={15} fontSize={21.5} textAlign={'center'} color={dark} text={'Student Package'}/>
-              </View>
-              <Text style={{marginVertical:20}}>Main Course</Text>
-              <ScrollView horizontal paddingBottom={10}>
-                <Card marginRight={10} style={{width:200,height:150}}></Card>
-                <Card style={{width:200,height:150}}></Card>
-                <Card style={{width:200,height:150}}></Card>
-                <Card style={{width:200,height:150}}></Card>
-              </ScrollView>
-            </ScrollView>
+    <View style={styles.container}>
+      <View style={styles.buttonContainer}>
+        <HStack justifyContent='space-between' alignSelf='center' marginBottom={20} style={{
+          width: '95%',
+          height: 50,
+          borderRadius: 50,
+          backgroundColor: colorGrade2
+        }}>
+          <GradientButton title="Standard" onPress={() => handleButtonPress(1)} isSelected={selectedButton === 1} />
+          <GradientButton title="Corporate" onPress={() => handleButtonPress(2)} isSelected={selectedButton === 2} />
+          <GradientButton title="Vendor" onPress={() => handleButtonPress(3)} isSelected={selectedButton === 3} />
+        </HStack>
+      </View>
+      <View style={styles.cardsContainer}>
+        {packageData && (
+          <Card
+            title={selectedButton === 1 ? 'Student Package' : selectedButton === 2 ? 'Corporate Package' : selectedButton === 3 ? 'Vendor Package':'none'}
+            content={selectedButton === 1 ? packageData.studentPackage.description : selectedButton === 2 ? packageData.corporatePackage.description : selectedButton === 3 ? packageData.vendorPackage.description : ''}
+          />
+        )}
+      </View>
     </View>
-            
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    marginBottom: 20
+  },
+  cardsContainer: {
+    width: '80%'
+  },
+  cardContainer: {
+    borderWidth: 1,
+    borderColor: 'grey',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10
+  },
+  cardTitle: {
+    fontWeight: 'bold'
+  }
+});
 
 export default Packages;

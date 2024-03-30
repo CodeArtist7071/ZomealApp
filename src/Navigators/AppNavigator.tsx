@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import auth,{firebase,FirebaseAuthTypes} from '@react-native-firebase/auth'; // Import User type from react-native-firebase
 import LoginRedirect from "../screens/LoginRedirect";
@@ -25,12 +25,14 @@ import AddressPrompt from "../screens/AddressPrompt"
 import { Package } from "lucide-react-native";
 import PackagePrompt from "../screens/PackagePrompt";
 import MenuPrompt from "../screens/MenuPrompt";
+import firestore from "@react-native-firebase/firestore"
+import DummyDashboard from "../screens/DummyDashboard";
 
 const Stack = createNativeStackNavigator();
 type User = FirebaseAuthTypes.User | null;
 const AppNavigator = () => {
     const [user, setUser] = useState<User>(null); // Define user state with User | null type
-
+    
   useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged((user) => { // Use auth() to access authentication methods
       return setUser(user); // Set the user state based on authentication state
@@ -41,16 +43,18 @@ const AppNavigator = () => {
   }, []);
 
   return (
-    <UserProvider>
     <NavigationContainer>
       <Stack.Navigator>
         {user ? (
           // If user is authenticated, show the Dashboard and other screens
           <>
-          <Stack.Screen component={PincodePrompt} name="PincodePrompt" options={{headerTransparent:true,headerTitle:''}}/>
+            <Stack.Screen component={PincodePrompt} name="PincodePrompt" options={{headerTransparent:true,headerTitle:''}}/>
+            <Stack.Screen component={PackagePrompt} name="PackagePrompt" options={{headerTitle:'',headerTransparent:true}}/>
+            <Stack.Screen component={AddressPrompt} name="AddressPrompt"/>
+            <Stack.Screen component={MenuPrompt} name="MenuPrompt"/>
           <Stack.Screen
               component={Dashboard}
-              name="Dashboard"
+              name="dashboard"
               options={{ headerShown: false }}
             />
             <Stack.Screen component={BottomNavigation} name="Tabs" />
@@ -61,11 +65,8 @@ const AppNavigator = () => {
               name="Address"
               options={{ headerShown: true, headerShadowVisible: true }}
             />
-            <Stack.Screen component={AddressPrompt} name="AddressPrompt"/>
-            <Stack.Screen component={PackagePrompt} name="PackagePrompt" options={{headerTitle:'',headerTransparent:true}}/>
-            <Stack.Screen component={MenuPrompt} name="MenuPrompt"/>
-            <Stack.Screen component={Settings} name="Settings" />
-            <Stack.Screen component={Profile} name="Profile" />
+            <Stack.Screen component={Settings} name="Settings"/>
+            <Stack.Screen component={Profile} name="Profile"/>
             <Stack.Screen component={CancelService} name="Cancel Service"/>
             <Stack.Screen
               component={Subscription}
@@ -83,6 +84,7 @@ const AppNavigator = () => {
         ) : (
           // If user is not authenticated, show the LoginRedirect and Sign In screens
           <>
+          
             <Stack.Screen
               component={LoginRedirect}
               name="LoginRedirect"
@@ -93,11 +95,17 @@ const AppNavigator = () => {
               name="Sign In"
               options={{ headerTransparent: true }}
             />
+            <Stack.Screen
+            component={DummyDashboard}
+            name="DummyDashboard"
+            options={{headerTransparent:true,headerShadowVisible:true,headerTitle:''}}
+            />
+          
+
           </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
-    </UserProvider>
   );
 };
 

@@ -2,7 +2,7 @@ import React from 'react'
 import CustomAnimationCard from '../components/CustomAnimationCard'
 import { accentBg, colorGrade1, colorGrade2, dark, primaryBg, textColor } from '../constants/Stylesheet'
 import CustomCard from '../components/CustomCard'
-import { Box, Card, SafeAreaView,HStack, Text, ScrollView, Button, LinearGradient } from '@gluestack-ui/themed'
+import { Box, Card, SafeAreaView,HStack, Text, ScrollView, Button, LinearGradient, Image } from '@gluestack-ui/themed'
 import CustomButton from '../components/CustomButton'
 import { useState,useEffect } from 'react'
 import {LinearGradient as RNLinearGradient} from 'react-native-linear-gradient'
@@ -11,6 +11,7 @@ import { Dimensions } from 'react-native'
 import firestore from '@react-native-firebase/firestore'
 import MealMenu from '../components/MealMenu'
 import { useIsFocused } from '@react-navigation/native'
+import img from '../assets/Images/chicken_biryani.jpg'
 import Animated, {useAnimatedStyle, useSharedValue, withTiming, Easing } from 'react-native-reanimated'
 
 
@@ -39,6 +40,7 @@ const cardHeight = height * .3
     const handleButtonColor = (color) => {
       setColor(!color)
       setActive(!isActive)
+      navigation.navigate('Cancel Service')
       
      }
 
@@ -53,14 +55,16 @@ return(
         </Box>
         </Box> 
         <Box flex={1} my={'$10'} justifyContent='center' alignItems='center'>
-        <Card width={'95%'} height={200}/>
+        <Card padding={0} width={'95%'} height={200}>
+          <Image alt='image' width={cardWidth} height={cardHeight} objectFit='contain' source={img}/>
+        </Card>
         </Box> 
         
     </ScrollView>
     <Card h={'$15'} backgroundColor={'$trueGray100'} borderTopLeftRadius={30} borderTopEndRadius={30}>
     <HStack width={'80%'} marginTop={'-$16'} marginLeft={'auto'} marginRight={'auto'} justifyContent='center' alignItems='center'>
     <Box padding={'$3'} bgColor='$trueGray100' borderRadius={50}>
-    <CustomButton borderRadius={50} color={textColor} fontSize={12.5} title={isActive ? 'Active' : 'Cancel'} width={80} height={80} shadowColor={'#000'} shadowOffsetWidth={2} shadowOffsetHeight={10} shadowOpacity={.9} shadowRadius={4} rounded={'$full'} bgColor={accentBg} handlePressEvent={handleButtonColor}/>
+    <CustomButton borderRadius={50} color={textColor} fontSize={12.5} title={'Skip'} width={80} height={80} shadowColor={'#000'} shadowOffsetWidth={2} shadowOffsetHeight={10} shadowOpacity={.9} shadowRadius={4} rounded={'$full'} bgColor={accentBg} handlePressEvent={handleButtonColor}/>
     </Box>
     </HStack>
     </Card>

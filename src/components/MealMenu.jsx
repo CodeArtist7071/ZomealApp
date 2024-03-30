@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Box, Card, HStack, Image, ScrollView, VStack } from '@gluestack-ui/themed';
+import { Card, Spinner, Text } from '@gluestack-ui/themed';
+import React, { useState, useRef, useEffect } from 'react';
+import { View, StyleSheet, Switch, Animated } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import { dark, textColor } from '../constants/Stylesheet';
+import firestore from '@react-native-firebase/firestore'
 import CustomText from './CustomText';
-import { accentBg, dark } from '../constants/Stylesheet';
-import firestore from '@react-native-firebase/firestore'; // Import firestore
-import CustomDivider from './CustomDivider';
 
-
-const WeeklyMenuCollection = firestore().collection('weeklyMenu');
-
-const MealMenu = () => {
+const ToggleBackgroundCard = () => {
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const animatedValue = useRef(new Animated.Value(0)).current;
   const [todaysMenu, setTodaysMenu] = useState({});
   const [loading, setLoading] = useState(true);
+  const WeeklyMenuCollection = firestore().collection('weeklyMenu');
+
 
   useEffect(() => {
     const fetchTodaysMenu = async () => {
@@ -33,58 +35,87 @@ const MealMenu = () => {
 
     fetchTodaysMenu();
   }, []);
-  console.log(todaysMenu.Lunch)
+
+  const toggleBackground = () => {
+    Animated.timing(animatedValue, {
+      toValue: isEnabled ? 0 : 1,
+      duration: 1000,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const gradientColorsInterpolate = animatedValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: isEnabled ? ['#f7971e', '#ffd200'] : ['#0f0c29', '#302b63'],
+  });
 
   return (
-    <View>
-      <CustomText color={dark} fontSize={17.5} fontWeight={600} textAlign={'center'} text={"Today's Menu"} />
-      <CustomDivider width={'40%'} height={2} bgColor={accentBg} paddingAxisY={10} alignSelf={'center'}/>
-      <HStack justifyContent='space-between'>
-        <Card w={'50%'} mr={4}>
-        <Text style={{color:dark,fontSize:15.5,fontWeight:'500'}}>Lunch</Text>
-          {/* <Image source={{uri:""}} /> */}
-          {loading ? (
-            <Text>Loading...</Text>
-          ) : (
-               todaysMenu.Lunch.map((item, index) => (
-              <Text style={{color:dark}} key={index}>{item}</Text>
-            ))
-          )}
-        </Card>
-       <Card w={'50%'} m={2}>
-       <Text style={{color:dark,fontSize:15.5, fontWeight:'500'}}>Dinner</Text>
+    <View style={styles.container}>
+      <CustomText fontSize={18.5} paddingAxisY={20} color={dark} text={"Today's Menu"}/>
+      <Animated.View style={[styles.card, { backgroundColor: gradientColorsInterpolate }]}>
+        <Switch
+          trackColor={{ false: "#767577", true: "#81b0ff" }}
+          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => {
+            toggleSwitch();
+            toggleBackground();
+          }}
+          value={isEnabled}
+          style={styles.switch}
+        />
+        {(isEnabled)?(
+          <>
+            <Text style={{color:dark,fontSize:15.5,fontWeight:'500'}}>Lunch</Text>
+            {/* <Image source={{uri:""}} /> */}
+            {loading ? (
+              <Spinner/>
+            ) : (
+                 todaysMenu.Lunch.map((item, index) => (
+                <Text style={{color:dark}} key={index}>{item}</Text>
+              ))
+            )}
+            <Card style={{position:'absolute',top:10,left:20,overflow:'hidden',width:40,height:40,backgroundColor:'yellow',borderRadius:50}}/>
+            
+          </>
+          
+        ):(
+          <>
+             <Text style={{color:textColor,fontSize:15.5, fontWeight:'500'}}>Dinner</Text>
           {/* <Image source={{uri:""}}/> */}
           {loading ? (
-            <Text>Loading...</Text>
+            <Spinner/>
           ) : (
              todaysMenu.Dinner.map((item,index) => (
-              <Text style={{color:dark}} key={index}>{item}</Text>
+              <Text style={{color:textColor}} key={index}>{item}</Text>
             ))
           )}
-        </Card>  
+          </>
        
-      </HStack>
+        )}
+      </Animated.View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 5,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  mealSection: {
-    marginBottom: 10, // Increase spacing between sections
+  card: {
+    width:'95%',
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
   },
-  mealTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'black',
-    marginBottom: 5, // Add space below title
-  },
-  meal: {
-    fontSize: 16,
-    color: 'black',
+  switch: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
   },
 });
 
-export default MealMenu;
+export default ToggleBackgroundCard;

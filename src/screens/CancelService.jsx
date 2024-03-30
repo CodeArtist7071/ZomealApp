@@ -8,7 +8,7 @@ const CancelService = () => {
   const [skipLunch, setSkipLunch] = useState(false);
   const [skipDinner, setSkipDinner] = useState(false);
   const [skipBoth, setSkipBoth] = useState(false);
-  const [dates, setDates] = useState(new Date().getDate);
+  const [dates, setDates] = useState(new Date());
 
   useEffect(() => {
     const fetchServiceSettings = async () => {

@@ -9,6 +9,7 @@ import CustomPagination from '../components/CustomAnimationCard';
 import CustomDivider from '../components/CustomDivider';
 import {primaryBg,secondaryBg,textColor,accentBg, fontSizeMedium, dark,colorGrade1, colorGrade2} from '../constants/Stylesheet'
 import {LinearGradient as BVLinearGradient} from 'react-native-linear-gradient'
+import CustomLink from '../components/CustomLink';
 const coverImage = require('../assets/images/coverImage.png');
 
 
@@ -33,7 +34,7 @@ const Loginscreen = ({handleChangeText,value,handlePress}) => {
              color={dark} 
              labelText={'Phone Number'} 
              keyboardType={'numeric'}
-             errorText={'Must be Atleasat 6 Digits.'}
+             errorText={'Must be Atleasat 10 Digits.'}
              labelColor={dark}
              value={value}
              handleChangeText={handleChangeText}
@@ -43,9 +44,11 @@ const Loginscreen = ({handleChangeText,value,handlePress}) => {
              InputSlotbackgroundColor={'orange'}
              padding={'$3'}
              countryCode={'+91'}
-             
             />
-          <CustomText color={dark} text={'By loging in, You agree to our Terms and Conditions.'} paddingAxisY={'$2'} justifyContent={'center'} alignSelf={'center'} textAlign={'center'}/>
+            <Hstack>
+            <CustomCheckbox size={'md'}/>
+            <CustomLink linkColor={dark} text={'By loging in, You agree to our Terms and Conditions.'} paddingAxisY={'$2'} justifyContent={'center'} alignSelf={'center'} textAlign={'center'} onPress={''}/>
+            </Hstack>
           <CustomButton borderRadius={50} size={'xl'} title={'Send Code'} width={'70%'} height={50} alignSelf={'center'} bgColor={accentBg} color={primaryBg} handlePressEvent={handlePress} marginVertical={30}/>
       </Box>
 </KeyboardAvoidingView>

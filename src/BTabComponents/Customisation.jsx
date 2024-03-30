@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
-import { View, Text, Switch, Button, StyleSheet } from 'react-native';
-import { Box, HStack, Card, Image, VStack } from '@gluestack-ui/themed';
+import React, { useEffect, useState } from 'react';
+import { View, Switch, Button, StyleSheet, Dimensions } from 'react-native';
+import { Box, HStack, Card, Image, VStack,Text } from '@gluestack-ui/themed';
 import CustomButtonIcon from '../components/CustomIconButton';
 import { Minus, Plus } from 'lucide-react-native';
 import CustomText from '../components/CustomText';
 import { accentBg, dark, textColor } from '../constants/Stylesheet';
 import img from '../assets/Images/chicken_biryani.jpg'
 import CustomButton from '../components/CustomButton';
+import { useIsFocused } from '@react-navigation/native'
+import Animated, {useAnimatedStyle, useSharedValue, withTiming, Easing } from 'react-native-reanimated'
+
 const items = [
   {
     id: 0,
@@ -19,9 +22,17 @@ const items = [
   
 ];
 
+const {width,height} = Dimensions.get('window');
+const cardWidth = width * .95
+const cardHeight = height*.3
+
 const Customisation = () => {
+  const [text, setText] = useState('');
   const [isData1Active, setIsData1Active] = useState(false); // Toggle between data 1 and data 2
   const [quantity, setQuantity] = useState(items.map(() => 0)); // Initialize quantity for each category
+  const isFocused = useIsFocused();
+  const translateX = useSharedValue(0);
+  const heading = "Indulge Your Senses with Personalized Perfection";
 
   // Toggle the active data
   const toggleSwitch = () => setIsData1Active(previousState => !previousState);
@@ -35,9 +46,34 @@ const Customisation = () => {
   const decrementQuantity = (index) => {
     setQuantity(quantity.map((qty, qtyIndex) => (qtyIndex === index && qty > 0) ? qty - 1 : qty));
   };
+   
+  useEffect(()=>{
+    translateX.value = withTiming(isFocused ? 0 : 1000, {duration:1000,easing:Easing.out(Easing.exp)})
+   },[isFocused])
+  
+   const animatedStyle = useAnimatedStyle(()=>{
+     return{
+       transform: [{translateX:translateX.value}]
+     }  
+   })
+
+   useEffect(() => {
+    let index = 0;
+    const intervalId = setInterval(() => {
+      setText(heading.substring(0, index));
+      index++;
+      if (index > heading.length) {
+        clearInterval(intervalId);
+      }
+    }, 20); // Adjust the interval duration to control the typing speed
+
+    return () => clearInterval(intervalId); // Cleanup function to clear interval on component unmount
+  }, []); // Run effect only once on component mount
+
 
   return (
     <Box style={{ marginTop: 100 }} justifyContent='center'>
+      <Text marginLeft={20} fontSize={24.5} fontWeight={600} color={dark} height={150} width={300}>{text}</Text>
       {items.map((category, index) => (
         <Card key={index} w={'90%'} alignSelf='center' style={styles.card}>
           <HStack justifyContent='space-between'>
