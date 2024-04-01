@@ -59,9 +59,9 @@ const PackagePrompt = ({ navigation }) => {
             </HStack>
             <Text style={{position:'absolute',bottom:100,left:20}}>{packageData[selectedButton === 1 ? 'Student' : selectedButton === 2 ? 'Corporate' : 'Vendor'].description}</Text>
            <Box style={{position:'absolute'}}  alignSelf='center' bottom={10}>
-           <TouchableOpacity onPress={''}>
+           <TouchableOpacity onPress={()=>navigation.navigate('MenuPrompt')}>
             <LinearGradient style={{width:150,height:50,borderRadius:50}} colors={[colorGrade1,colorGrade2]} as={RNLinearGradient}>
-             <Text style={{textAlign:'center'}} lineHeight={50} color={textColor} alignSelf='center'>Submit</Text>
+             <Text style={{textAlign:'center'}} lineHeight={50} color={textColor} alignSelf='center'>Proceed</Text>
             </LinearGradient>
            </TouchableOpacity>
            </Box>

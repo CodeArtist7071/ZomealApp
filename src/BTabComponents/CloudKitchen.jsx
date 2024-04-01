@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import firestore from "@react-native-firebase/firestore"
-import { Box, Card, HStack, Icon, Image, ImageBackground, Text } from '@gluestack-ui/themed'
-import { Home, Locate, MapPin, View } from 'lucide-react-native'
+import { AddIcon, Box, Card, HStack, Icon, Image, ImageBackground, Pressable, Text } from '@gluestack-ui/themed'
+import { Forklift, Home, Locate, MapPin, Utensils, UtensilsCrossed, View } from 'lucide-react-native'
 import img from '../assets/Images/chicken_biryani.jpg'
 import CustomText from '../components/CustomText'
-import { dark } from '../constants/Stylesheet'
+import { accentBg, dark, textColor } from '../constants/Stylesheet'
 import { useIsFocused } from '@react-navigation/native'
 import { Dimensions } from 'react-native'
 import Animated, {useAnimatedStyle, useSharedValue, withTiming, Easing } from 'react-native-reanimated'
@@ -15,7 +15,7 @@ const cardWidth = width * .95
 const cardHeight = height*.3
 
 
-const CloudKitchen=()=>{
+const CloudKitchen=({navigation})=>{
     const [text, setText] = useState('');
     const [name,setName] = useState('');
     const [address,setAddress] = useState('');
@@ -63,6 +63,10 @@ const CloudKitchen=()=>{
       return () => clearInterval(intervalId); // Cleanup function to clear interval on component unmount
     }, []); // Run effect only once on component mount
   
+  function handleBtn(){
+    navigation.navigate('Customisation')
+   }
+
 return(
   <Box mt={100}>
     <Text my={50} marginLeft={20} fontSize={24.5} fontWeight={600} color={dark} height={150} width={300}>{text}</Text>
@@ -76,6 +80,9 @@ return(
       <CustomText width={'95%'}  fontSize={15.5} marginLeft={20} paddingTop={10} color={'gray'} text={address}/>
      </HStack>
      <CustomText marginLeft={10} paddingTop={10} color={dark} text={location}/>
+     <Pressable borderRadius={50} alignSelf='flex-end' marginRight={30} width={50} height={50} style={{backgroundColor:accentBg}} onPress={handleBtn}>
+      <Icon color={textColor} size='xl' marginTop={10} alignSelf='center' as={UtensilsCrossed}/>
+     </Pressable>
     </Animated.View>
   </Box>   
 )

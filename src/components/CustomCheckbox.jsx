@@ -5,7 +5,7 @@ const CustomCheckbox = ({
     size,as,isDisabled,isInvalid,label
 }) => {
     return (
-        <Checkbox   size={size} isInvalid={isInvalid} isDisabled={isDisabled}   >
+        <Checkbox aria-label='check'  size={size} isInvalid={isInvalid} isDisabled={isDisabled}   >
         <CheckboxIndicator mr="$2">
           <CheckboxIcon as={as}/>
         </CheckboxIndicator>

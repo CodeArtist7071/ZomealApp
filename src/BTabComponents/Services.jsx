@@ -61,9 +61,9 @@ FetchData();
           borderRadius: 50,
           backgroundColor: colorGrade2
         }}>
-          <GradientButton title="Standard" onPress={() => handleButtonPress(1)} isSelected={selectedButton === 1} />
-          <GradientButton title="Corporate" onPress={() => handleButtonPress(2)} isSelected={selectedButton === 2} />
-          <GradientButton title="Vendor" onPress={() => handleButtonPress(3)} isSelected={selectedButton === 3} />
+          <GradientButton title="Both" onPress={() => handleButtonPress(1)} isSelected={selectedButton === 1} />
+          <GradientButton title="Lunch" onPress={() => handleButtonPress(2)} isSelected={selectedButton === 2} />
+          <GradientButton title="Dinner" onPress={() => handleButtonPress(3)} isSelected={selectedButton === 3} />
         </HStack>
       </View>
       <View style={styles.cardsContainer}>

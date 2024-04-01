@@ -13,10 +13,9 @@ import CustomToast from '../components/CustomToast'
 const items=[
     {id:'1',title:'View Profile',icon:CircleUserIcon,page:"Profile"},
     {id:'2',title:"View Subscription",icon:CalendarCheck,page:"Subscription"},
-    {id:'3',title:"Address",icon:BookUser,page:"Address"},
-    {id:'4',title:"Frequently Asked Questions",icon:MessageCircleQuestion,page:"FAQ"},
-    {id:'5', title:'SendFeedback',icon:MessageSquare,page:"Feedback"},
-    {id:'6', title:'Report for an safety concerns',icon:MessageCircleWarning,page:"Report"},
+    {id:'3',title:"Frequently Asked Questions",icon:MessageCircleQuestion,page:"FAQ"},
+    {id:'4', title:'SendFeedback',icon:MessageSquare,page:"Feedback"},
+    {id:'5', title:'Report for an safety concerns',icon:MessageCircleWarning,page:"Report"},
 
 ]
 const Settings=({navigation})=>{

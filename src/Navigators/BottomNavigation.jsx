@@ -30,7 +30,6 @@ return(
     <BottomTabs.Screen component={CloudKitchen} name="Cloudkitchen" options={{tabBarIcon:((color,size)=><CustomIcon icons={Cloudy}/>)}}/>
     <BottomTabs.Screen component={Packages} name="Packages" options={{tabBarIcon:((color,size)=><CustomIcon icons={Package}/>)}}/>
     <BottomTabs.Screen component={Services} name="Services" options={{headerTintColor:textColor,tabBarIcon:((color,size)=><CustomIcon icons={HandPlatter}/>)}}/>
-    <BottomTabs.Screen component={Customisation} name="Customisation"options={{tabBarIcon:((color,size)=><CustomIcon icons={FileCog}/>)}}/>
   </BottomTabs.Navigator>
   
 )

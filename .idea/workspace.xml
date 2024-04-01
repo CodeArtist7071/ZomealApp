@@ -16,9 +16,13 @@
       <change beforePath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/8.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/8.3/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@react-native/gradle-plugin/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomDropdownPicker.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomDropdownPicker.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GradientButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GradientButton.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BTabComponents/Packages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/BTabComponents/Packages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Navigators/AppNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Navigators/AppNavigator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CustomCheckbox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomCheckbox.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/AddressPrompt.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddressPrompt.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Loginscreen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Loginscreen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/MenuPrompt.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MenuPrompt.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/OrderDetails.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OrderDetails.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/PackagePrompt.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PackagePrompt.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/PincodePrompt.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PincodePrompt.jsx" afterDir="false" />
     </list>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dimensions } from 'react-native';
-import { KeyboardAvoidingView, Box, Card, ScrollView, Divider, LinearGradient, SafeAreaView } from '@gluestack-ui/themed'; // Assuming these are custom styled components
+import { KeyboardAvoidingView, Box, Card, ScrollView, Divider, LinearGradient, SafeAreaView, HStack } from '@gluestack-ui/themed'; // Assuming these are custom styled components
 import CustomButton from '../components/CustomButton';
 import Textfield from '../components/CustomTextfield';
 import CustomText from '../components/CustomText';
@@ -10,7 +10,9 @@ import CustomDivider from '../components/CustomDivider';
 import {primaryBg,secondaryBg,textColor,accentBg, fontSizeMedium, dark,colorGrade1, colorGrade2} from '../constants/Stylesheet'
 import {LinearGradient as BVLinearGradient} from 'react-native-linear-gradient'
 import CustomLink from '../components/CustomLink';
+import { Check } from 'lucide-react-native';
 const coverImage = require('../assets/images/coverImage.png');
+
 
 
 
@@ -45,10 +47,9 @@ const Loginscreen = ({handleChangeText,value,handlePress}) => {
              padding={'$3'}
              countryCode={'+91'}
             />
-            <Hstack>
-            <CustomCheckbox size={'md'}/>
-            <CustomLink linkColor={dark} text={'By loging in, You agree to our Terms and Conditions.'} paddingAxisY={'$2'} justifyContent={'center'} alignSelf={'center'} textAlign={'center'} onPress={''}/>
-            </Hstack>
+            <HStack width={'80%'} alignSelf='center'>
+            <CustomCheckbox as={Check} label={'By loging in, You agree to our Terms and Conditions.'} size={'md'}/>
+            </HStack>
           <CustomButton borderRadius={50} size={'xl'} title={'Send Code'} width={'70%'} height={50} alignSelf={'center'} bgColor={accentBg} color={primaryBg} handlePressEvent={handlePress} marginVertical={30}/>
       </Box>
 </KeyboardAvoidingView>

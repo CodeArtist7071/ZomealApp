@@ -51,7 +51,7 @@ useEffect(()=>{
   }
   function handlePincodeEvent(){
    console.log(pincodeSearch)
-   navigation.navigate('PackagePrompt')
+   navigation.navigate('OrderDetails')
   }
   return (
     <LinearGradient

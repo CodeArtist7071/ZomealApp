@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Button, ButtonText, Card, HStack, ScrollView, Text, View } from '@gluestack-ui/themed'
+import { Box, Button, ButtonText, Card, HStack, Icon, ScrollView, Text, View } from '@gluestack-ui/themed'
 import firestore from '@react-native-firebase/firestore'
 import auth from '@react-native-firebase/auth'
 import CustomText from '../components/CustomText'
 import { accentBg, dark, textColor } from '../constants/Stylesheet'
 import { Pressable } from 'react-native'
 import CustomButtonIcon from '../components/CustomIconButton'
-import { PencilIcon } from 'lucide-react-native'
+import { ArrowRight, Currency, HomeIcon, PencilIcon } from 'lucide-react-native'
 
 
 const OrderDetails = ({navigation})=>{
@@ -47,9 +47,8 @@ const OrderDetails = ({navigation})=>{
     },[])
 
     function handleSkipBtn(){
-        return(
-        navigation.navigate('Dashboard')
-        )
+        navigation.navigate('dashboard')
+        console.log('button Clicked')
     }
     
  
@@ -105,16 +104,21 @@ return(
 </Card>
 </ScrollView>
 <HStack px={10} alignItems='center'justifyContent='space-between' w={'100%'} h={100} backgroundColor={textColor} bottom={0} position='relative'>
-<Pressable onPress={handleSkipBtn}>
-    <Button borderRadius={50} width={150} height={50} backgroundColor={accentBg}>
-        <ButtonText>Skip</ButtonText>
-    </Button>
-</Pressable>    
-<Pressable>
-    <Button borderRadius={50} width={150} height={50} backgroundColor={accentBg}>
-        <ButtonText>Continue</ButtonText>
-    </Button>
-</Pressable>
+                <Pressable onPress={handleSkipBtn}>
+                 <HStack style={{justifyContent:'center',alignSelf:'center',marginTop:-30,marginLeft:10}}>
+                 <Card style={{width:60,height:60, borderRadius:50,justifyContent:'center',alignContent:'center'}} backgroundColor={accentBg}>
+                 <Icon style={{marginLeft:1}} color={textColor} size={'xl'} as={HomeIcon} />
+                </Card>
+               </HStack>
+                </Pressable> 
+                <Pressable onPress={handleSkipBtn}>
+                 <HStack style={{justifyContent:'center',alignSelf:'center',marginTop:-20,marginRight:10}}>
+                 <Card style={{width:60,height:60, borderRadius:50,justifyContent:'center',alignContent:'center'}} backgroundColor={accentBg}>
+                 <Icon color={textColor} size={'xl'} as={ArrowRight} />
+                </Card>
+               </HStack>
+                </Pressable>   
+
 </HStack>
 </Box>
    

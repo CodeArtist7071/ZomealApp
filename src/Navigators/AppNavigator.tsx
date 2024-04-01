@@ -27,6 +27,9 @@ import PackagePrompt from "../screens/PackagePrompt";
 import MenuPrompt from "../screens/MenuPrompt";
 import firestore from "@react-native-firebase/firestore"
 import DummyDashboard from "../screens/DummyDashboard";
+import OrderDetails from "../screens/OrderDetails";
+import Customisation from "../BTabComponents/Customisation";
+
 
 const Stack = createNativeStackNavigator();
 type User = FirebaseAuthTypes.User | null;
@@ -52,6 +55,7 @@ const AppNavigator = () => {
             <Stack.Screen component={PackagePrompt} name="PackagePrompt" options={{headerTitle:'',headerTransparent:true}}/>
             <Stack.Screen component={AddressPrompt} name="AddressPrompt"/>
             <Stack.Screen component={MenuPrompt} name="MenuPrompt"/>
+            <Stack.Screen component={OrderDetails} name="OrderDetails"/>
           <Stack.Screen
               component={Dashboard}
               name="dashboard"
@@ -60,6 +64,7 @@ const AppNavigator = () => {
             <Stack.Screen component={BottomNavigation} name="Tabs" />
             <Stack.Screen component={Balance} name="Balance" />
             <Stack.Screen component={Calories} name="Calories" />
+            <Stack.Screen component={Customisation} name="Customisation" options={{headerTitle:'', headerTransparent:true}}/>
             <Stack.Screen
               component={AddAddress}
               name="Address"
