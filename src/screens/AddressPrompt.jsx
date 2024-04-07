@@ -2,13 +2,13 @@ import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelper,
 import React, { useState, useEffect } from 'react';
 import { ScrollView, KeyboardAvoidingView } from '@gluestack-ui/themed';
 import CustomTextfield from '../components/CustomTextfield';
-import CustomDropdownPicker from '../components/CustomDropdownPicker';
 import CustomButton from '../components/CustomButton';
 import { Box } from '@gluestack-ui/themed';
 import { accentBg, dark, textColor } from '../constants/Stylesheet';
 import firestore from '@react-native-firebase/firestore';
 import { ArrowRight } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth'
 
 const AddAddress = () => {
     const [firstName, setFirstName] = useState('');
@@ -21,6 +21,7 @@ const AddAddress = () => {
     const [landmark, setLandmark] = useState('');
     const [isFormValid, setIsFormValid] = useState(false)
     const navigation = useNavigation()
+    const userId = auth().currentUser.uid
     useEffect(() => {
         const fetchLocalities = async () => {
             try {
@@ -29,7 +30,6 @@ const AddAddress = () => {
                     id: doc.id,
                     ...doc.data()
                 }));
-                setLocalities(localitiesData);
                 console.log('Localities data retrieved:', localitiesData);
             } catch (error) {
                 console.error('Error fetching localities:', error);
@@ -39,7 +39,7 @@ const AddAddress = () => {
     }, []);
     const handleSaveButton = async () => {
         try {
-            await firestore().collection('users').set({
+            await firestore().collection('users').doc(userId).set({
                 firstName,
                 lastName,
                 address,
@@ -53,7 +53,7 @@ const AddAddress = () => {
         } catch (error) {
             console.error('Error adding user: ', error);
         }
-        navigation.navigate('OrderDetails')
+        navigation.navigate('PackagePrompt')
     };
     useEffect(()=>{
         const checkFormValidity = ()=>{

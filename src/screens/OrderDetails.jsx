@@ -22,10 +22,11 @@ const OrderDetails = ({navigation})=>{
     const [landmark, setLandmark] = useState();
     const [locality,setLocality] = useState();
     const [pincode, setPincode] = useState();
+    const userId = auth().currentUser.uid
     useEffect(()=>{
         const fetchingData= async()=>{
-          const user = auth().currentUser.uid  
-         const docRef = firestore().collection('users').doc('XbK18bAOfoxz8ln4zxD7')
+          const userId = auth().currentUser.uid  
+         const docRef = firestore().collection('users').doc(userId)
          const docSnapshot = await docRef.get();
          if(docSnapshot.exists){
             const Data = docSnapshot.data()

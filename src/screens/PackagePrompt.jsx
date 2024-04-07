@@ -9,11 +9,10 @@ import { LinearGradient as RNLinearGradient } from 'react-native-linear-gradient
 
 
 
-const PackagePrompt = ({ navigation }) => {
+const PackagePrompt = ({route, navigation }) => {
   const [selectedButton, setSelectedButton] = useState(1);
   const [packageData, setPackageData] = useState(null);
   const [loading,setLoading] = useState(true)
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -38,6 +37,9 @@ const PackagePrompt = ({ navigation }) => {
   const handleButtonPress = (buttonIndex) => {
     setSelectedButton(buttonIndex);
   };
+  function handlePackageButton(){
+    navigation.navigate('MenuPrompt')
+  }
 
   return (
     <View style={styles.container}>
@@ -59,7 +61,7 @@ const PackagePrompt = ({ navigation }) => {
             </HStack>
             <Text style={{position:'absolute',bottom:100,left:20}}>{packageData[selectedButton === 1 ? 'Student' : selectedButton === 2 ? 'Corporate' : 'Vendor'].description}</Text>
            <Box style={{position:'absolute'}}  alignSelf='center' bottom={10}>
-           <TouchableOpacity onPress={()=>navigation.navigate('MenuPrompt')}>
+           <TouchableOpacity onPress={handlePackageButton}>
             <LinearGradient style={{width:150,height:50,borderRadius:50}} colors={[colorGrade1,colorGrade2]} as={RNLinearGradient}>
              <Text style={{textAlign:'center'}} lineHeight={50} color={textColor} alignSelf='center'>Proceed</Text>
             </LinearGradient>

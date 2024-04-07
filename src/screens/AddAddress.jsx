@@ -1,7 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { ScrollView, KeyboardAvoidingView } from '@gluestack-ui/themed';
 import CustomTextfield from '../components/CustomTextfield';
-import CustomDropdownPicker from '../components/CustomDropdownPicker';
 import CustomButton from '../components/CustomButton';
 import { Box } from '@gluestack-ui/themed';
 import { accentBg, dark } from '../constants/Stylesheet';
@@ -103,27 +102,6 @@ return (
                     labelColor={dark}
                     inputFieldColor={dark}
                     keyboardType={'default'}
-                />
-                <CustomDropdownPicker
-                    title={'Locality'}
-                    fontWeight={'light'}
-                    width={'95%'}
-                    color={dark}
-                    dropdownPlaceholder={'Select your Locality'}
-                    dropdownData={localities.map(locality => ({ id: locality.id, value: locality.name }))} // Assuming each locality document has a 'name' field
-                    selectedValue={selectedLocality}
-                    handleClick={selectedLocality}
-                />
-                <CustomDropdownPicker
-                    title={'Enter your Pincode'}
-                    fontWeight={'light'}
-                    width={'95%'}
-                    color={dark}
-                    isRequired={true}
-                    dropdownPlaceholder={'Select your Pincode'}
-                    dropdownData={localities.map(locality => ({ id: locality.id, value: locality.pincode }))} // Assuming each locality document has a 'name' field
-                    selectedValue={selectedLocality}
-                    onValueChange={selectedLocality}
                 />
                 <CustomTextfield
                     variant={'outlined'}

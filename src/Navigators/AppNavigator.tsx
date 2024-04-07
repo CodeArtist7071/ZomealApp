@@ -50,26 +50,18 @@ const AppNavigator = () => {
       <Stack.Navigator>
         {user ? (
           // If user is authenticated, show the Dashboard and other screens
-          <>
+          <> 
             <Stack.Screen component={PincodePrompt} name="PincodePrompt" options={{headerTransparent:true,headerTitle:''}}/>
             <Stack.Screen component={PackagePrompt} name="PackagePrompt" options={{headerTitle:'',headerTransparent:true}}/>
             <Stack.Screen component={AddressPrompt} name="AddressPrompt"/>
             <Stack.Screen component={MenuPrompt} name="MenuPrompt"/>
             <Stack.Screen component={OrderDetails} name="OrderDetails"/>
-          <Stack.Screen
-              component={Dashboard}
-              name="dashboard"
-              options={{ headerShown: false }}
-            />
+            <Stack.Screen component={Dashboard} name="dashboard" options={{ headerShown: false }}/>
             <Stack.Screen component={BottomNavigation} name="Tabs" />
             <Stack.Screen component={Balance} name="Balance" />
             <Stack.Screen component={Calories} name="Calories" />
             <Stack.Screen component={Customisation} name="Customisation" options={{headerTitle:'', headerTransparent:true}}/>
-            <Stack.Screen
-              component={AddAddress}
-              name="Address"
-              options={{ headerShown: true, headerShadowVisible: true }}
-            />
+            <Stack.Screen component={AddAddress} name="Address" options={{ headerShown: true, headerShadowVisible: true }}/>
             <Stack.Screen component={Settings} name="Settings"/>
             <Stack.Screen component={Profile} name="Profile"/>
             <Stack.Screen component={CancelService} name="Cancel Service"/>

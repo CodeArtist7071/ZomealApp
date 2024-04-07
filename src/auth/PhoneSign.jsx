@@ -44,7 +44,6 @@ const PhoneSignIn = ({navigation}) => {
   
     async function createUserDocument(userId) {
       const userRef = firestore().collection('users').doc(userId);
-      
       try {
         const doc = await userRef.get();
         if (!doc.exists) {
@@ -73,7 +72,7 @@ const PhoneSignIn = ({navigation}) => {
       setUser(user.uid)
       setNumber(user.number)
       createUserDocument(user.uid,phoneNumber)
-      navigation.navigate('Dashboard')
+      navigation.navigate('PincodePrompt')
     }else{
      console.log('User is not logged in')
     }

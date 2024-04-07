@@ -1,46 +1,64 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Dropdown } from 'react-native-element-dropdown';
+import {StyleSheet, Text, TouchableOpacity, View,Alert } from 'react-native';
 import CustomIcon from '../components/CustomIcons';
 import { ArrowBigRight, ArrowBigRightIcon, ArrowRight, Box, LucideWallet2, Wallet, Wallet2Icon } from 'lucide-react-native';
 import CustomButton from '../components/CustomButton';
 import { accentBg, colorGrade1, colorGrade2, dark, textColor } from '../constants/Stylesheet';
 import CustomButtonIcon from '../components/CustomIconButton';
-import { ButtonIcon, Card, HStack, Icon, LinearGradient, Pressable } from '@gluestack-ui/themed';
+import {ButtonIcon, Card, HStack, Icon, LinearGradient, Pressable } from '@gluestack-ui/themed';
 import CustomText from '../components/CustomText';
 import { LinearGradient as RNLinearGradient } from 'react-native-linear-gradient';
 import CustomDivider from '../components/CustomDivider';
 import firestore from "@react-native-firebase/firestore"
-import CustomDropdownPicker from '../components/CustomDropdownPicker';
 import CustomTextfield from '../components/CustomTextfield';
 
 
 
-const DropdownComponent = ({navigation}) => {
+
+const DropdownComponent = ({route,navigation}) => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
   const [localities,setLocalities] = useState('')
   const [pincodeSearch,setPincodeSearch] = useState('')
   const [searchResult, setSearchResult] = useState(null)
+  const [pincodeValid, setPincodeValid] = useState(false)
+  const [PincodeData, setPincodeData] = useState(null)
+
+
 
   
 
 
-useEffect(()=>{
-  try{
-    const fetchingData= async()=>{
-      const docRef = await firestore().collection('Localities').get();
-      const docData = docRef.docs.map(doc=>({id:0,...doc.data()}))
-      setPincodeSearch(docData)
-      console.log('user:',docData)
-     }
-     fetchingData();
-  }catch(error){
-    console.log('Error in pincode fetching:',error)
-  }
- 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const docSnapshot = await firestore()
+          .collection('Localities')
+          .where('value', '==', pincodeSearch)
+          .get();
+        if (!docSnapshot.empty) {
+          // Pincode found
+          const data = docSnapshot.docs.map(doc => doc.data());
+          setPincodeData(data[0]); // Assuming there's only one document per pincode
+          setPincodeValid(true);
+          console.log('data:',data)
+        } else {
+          // Pincode not found
+          setPincodeValid(false);
+          setPincodeData(null);
+        }
+      } catch (error) {
+        console.error('Error fetching pincode data:', error);
+      }
+    };
 
-},[])
+    if (pincodeSearch) {
+      fetchData();
+    }
+  }, [pincodeSearch]);
+
+
+
 
 
   console.log('pincodeResult', pincodeSearch)
@@ -50,8 +68,14 @@ useEffect(()=>{
       setPincodeSearch(pincodeSearch)
   }
   function handlePincodeEvent(){
-   console.log(pincodeSearch)
-   navigation.navigate('OrderDetails')
+    if (pincodeValid) {
+      // Pincode found, navigate to success screen or show success alert
+     navigation.navigate('AddressPrompt')
+      // navigation.navigate('SuccessScreen');
+    } else {
+      // Pincode not found, show error alert or message
+      Alert.alert('Error', 'Pincode not found. Please enter a valid pincode.');
+    }
   }
   return (
     <LinearGradient
@@ -69,9 +93,9 @@ useEffect(()=>{
     <CustomTextfield size={'lg'} fontSize={15.5} inputFieldColor={dark} keyboardType={'numeric'} handleChangeText={handlePincodeResult} placeholder={'Search your Pincode'}/> 
     <CustomText width={'95%'} paddingAxisY={10} height={120} color={dark} textAlign={'center'} text={'Ensuring seamless delivery by confirming your location'}/>
      </Card>
-     <Pressable onPress={handlePincodeEvent}>
+     <Pressable disabled={!pincodeSearch} onPress={handlePincodeEvent}>
      <HStack style={{justifyContent:'center',alignSelf:'center',marginTop:-30}}>
-      <Card style={{width:60,height:60, borderRadius:50,backgroundColor:accentBg,justifyContent:'center',alignContent:'center'}}>
+      <Card style={{width:60,height:60, borderRadius:50,justifyContent:'center',alignContent:'center'}} backgroundColor={pincodeValid ? accentBg: 'grey'}>
       <Icon color={textColor} size={'xl'} as={ArrowRight} />
       </Card>
       </HStack>
