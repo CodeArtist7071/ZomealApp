@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Button, Switch } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import DateTimePicker from 'react-native-ui-datepicker';
+import auth from '@react-native-firebase/auth';
 
 
 const CancelService = () => {
@@ -13,7 +14,7 @@ const CancelService = () => {
   useEffect(() => {
     const fetchServiceSettings = async () => {
       try {
-        const userId = 'dIOKY0jv3IGlzNIbrY9B'; // Replace with actual user ID
+        const userId = auth().currentUser.uid; // Replace with actual user ID
         const userDoc = await firestore().collection('Users').doc(userId).get();
         const serviceSettings = userDoc.data()?.Service;
 
@@ -33,7 +34,7 @@ const CancelService = () => {
 
   const saveServiceSettings = async () => {
     try {
-      const userId = 'dIOKY0jv3IGlzNIbrY9B'; // Replace with actual user ID
+      const userId = auth().currentUser.uid; // Replace with actual user ID
       await firestore().collection('Users').doc(userId).set({
         Service: {
           skipLunch: skipLunch,

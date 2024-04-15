@@ -52,8 +52,8 @@ const AppNavigator = () => {
           // If user is authenticated, show the Dashboard and other screens
           <> 
             <Stack.Screen component={PincodePrompt} name="PincodePrompt" options={{headerTransparent:true,headerTitle:''}}/>
+            <Stack.Screen component={AddressPrompt} name="AddressPrompt" options={{}}/>
             <Stack.Screen component={PackagePrompt} name="PackagePrompt" options={{headerTitle:'',headerTransparent:true}}/>
-            <Stack.Screen component={AddressPrompt} name="AddressPrompt"/>
             <Stack.Screen component={MenuPrompt} name="MenuPrompt"/>
             <Stack.Screen component={OrderDetails} name="OrderDetails"/>
             <Stack.Screen component={Dashboard} name="dashboard" options={{ headerShown: false }}/>
@@ -95,7 +95,7 @@ const AppNavigator = () => {
             <Stack.Screen
             component={DummyDashboard}
             name="DummyDashboard"
-            options={{headerTransparent:true,headerShadowVisible:true,headerTitle:''}}
+            options={{headerTransparent:true,headerTitle:''}}
             />
           
 

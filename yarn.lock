@@ -2993,25 +2993,25 @@
     prompts "^2.4.2"
     semver "^7.5.2"
 
-"@react-native-firebase/app@^19.0.1", "@react-native-firebase/app@19.0.1":
-  version "19.0.1"
-  resolved "https://registry.npmjs.org/@react-native-firebase/app/-/app-19.0.1.tgz"
-  integrity sha512-opwy3mQfu0Vg7Fz07EzNCuRI6Wr8U3n6wp0IIwDbNg5zJWQN7ALa9OSN1SA16RhPepIXO1fFWbwmRsL2nOgrIw==
+"@react-native-firebase/app@^19.2.2", "@react-native-firebase/app@19.2.2":
+  version "19.2.2"
+  resolved "https://registry.npmjs.org/@react-native-firebase/app/-/app-19.2.2.tgz"
+  integrity sha512-yucIZT/n567XH+gU8Qf/Z8Awtrc0dadu0LYDJU/dq228DwoQa8xyCoDqXqVM2Ppj9R8csQ+ga4VdMYBSHblYQw==
   dependencies:
     opencollective-postinstall "^2.0.3"
     superstruct "^0.6.2"
 
-"@react-native-firebase/auth@^19.0.1":
-  version "19.0.1"
-  resolved "https://registry.npmjs.org/@react-native-firebase/auth/-/auth-19.0.1.tgz"
-  integrity sha512-7p/AMHm96sCgeERKTGn/PgO/16CUGSeAK3EFVUwr5kVBLfwragDPprUh1x7LaX/irbwbrZwlr2LEHpXNG/4j1g==
+"@react-native-firebase/auth@^19.2.2":
+  version "19.2.2"
+  resolved "https://registry.npmjs.org/@react-native-firebase/auth/-/auth-19.2.2.tgz"
+  integrity sha512-2TbbieNAmZSR3wqJZdQyFAT4vISESfvB3I3j/ll+3SS91fV2h0/H4xnBapoOEeXBGxioBGKXBOP3C4ySRXNV6g==
   dependencies:
     plist "^3.1.0"
 
-"@react-native-firebase/firestore@^19.0.1":
-  version "19.0.1"
-  resolved "https://registry.npmjs.org/@react-native-firebase/firestore/-/firestore-19.0.1.tgz"
-  integrity sha512-e/lI2onUuFM5zFVMzEt4e4FFbok/CgACD8jiwPZamtRRDXOaL6xnFeJY4CWvREEp5c8rRDGc4O5OsOU9Gpi/7A==
+"@react-native-firebase/firestore@^19.2.2":
+  version "19.2.2"
+  resolved "https://registry.npmjs.org/@react-native-firebase/firestore/-/firestore-19.2.2.tgz"
+  integrity sha512-SaW/f8vDwvP24KdCBo7uaBmE+5Y8JMKfWpOzJtY1XXuA7wlua3IjIilEXNVGrFk8az6N3n9RhCIpWbn4mOml9g==
 
 "@react-native/assets-registry@~0.73.1", "@react-native/assets-registry@0.73.1":
   version "0.73.1"
@@ -4807,15 +4807,6 @@ cliui@^6.0.0:
     string-width "^4.2.0"
     strip-ansi "^6.0.0"
     wrap-ansi "^6.2.0"
-
-cliui@^7.0.2:
-  version "7.0.4"
-  resolved "https://registry.npmjs.org/cliui/-/cliui-7.0.4.tgz"
-  integrity sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==
-  dependencies:
-    string-width "^4.2.0"
-    strip-ansi "^6.0.0"
-    wrap-ansi "^7.0.0"
 
 cliui@^8.0.1:
   version "8.0.1"
@@ -9104,7 +9095,7 @@ prompts@^2.0.1, prompts@^2.3.2, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -9271,15 +9262,15 @@ react-native-otp-entry@^1.5.0:
   resolved "https://registry.npmjs.org/react-native-otp-entry/-/react-native-otp-entry-1.5.0.tgz"
   integrity sha512-6S5vnxQvPVWcxnZT6ytlTo2G7Uvg9eNBhnIRsCOyLN9TjmAdQLJlD69ChnUnvZwIEvFiaMoOgrBzPyxEQFv6Sg==
 
-react-native-pager-view@*, react-native-pager-view@^6.2.3:
+react-native-pager-view@*:
   version "6.2.3"
   resolved "https://registry.npmjs.org/react-native-pager-view/-/react-native-pager-view-6.2.3.tgz"
   integrity sha512-dqVpXWFtPNfD3D2QQQr8BP+ullS5MhjRJuF8Z/qml4QTILcrWaW8F5iAxKkQR3Jl0ikcEryG/+SQlNcwlo0Ggg==
 
-react-native-reanimated@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-3.8.0.tgz"
-  integrity sha512-xoG4+nf+lSmzv37mjTUIT0gYNEIr2Mb8WXgmqR8deCJk8CC6lXT0HRpshTPVAF00LvdzrD2W/rCpiBdHN5FW2w==
+react-native-reanimated@^3.8.1:
+  version "3.8.1"
+  resolved "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-3.8.1.tgz"
+  integrity sha512-EdM0vr3JEaNtqvstqESaPfOBy0gjYBkr1iEolWJ82Ax7io8y9OVUIphgsLKTB36CtR1XtmBw0RZVj7KArc7ZVA==
   dependencies:
     "@babel/plugin-transform-arrow-functions" "^7.0.0-0"
     "@babel/plugin-transform-nullish-coalescing-operator" "^7.0.0-0"
@@ -9326,14 +9317,6 @@ react-native-ui-datepicker@^2.0.2:
     dayjs "^1.11.10"
     lodash "^4.17.21"
     uninstall "^0.0.0"
-
-react-native-vector-icons@^10.0.3:
-  version "10.0.3"
-  resolved "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-10.0.3.tgz"
-  integrity sha512-ZgVlV5AdQgnPHHvBEihGf2xwyziT1acpXV1U+WfCgCv3lcEeCRsmwAsBU+kUSNsU+8TcWVsX04kdI6qUaS8D7w==
-  dependencies:
-    prop-types "^15.7.2"
-    yargs "^16.1.1"
 
 react-native-web@>=0.19:
   version "0.19.10"
@@ -11154,11 +11137,6 @@ yargs-parser@^18.1.2:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
 
-yargs-parser@^20.2.2:
-  version "20.2.9"
-  resolved "https://registry.npmjs.org/yargs-parser/-/yargs-parser-20.2.9.tgz"
-  integrity sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==
-
 yargs-parser@^21.1.1:
   version "21.1.1"
   resolved "https://registry.npmjs.org/yargs-parser/-/yargs-parser-21.1.1.tgz"
@@ -11180,19 +11158,6 @@ yargs@^15.1.0:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
-
-yargs@^16.1.1:
-  version "16.2.0"
-  resolved "https://registry.npmjs.org/yargs/-/yargs-16.2.0.tgz"
-  integrity sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==
-  dependencies:
-    cliui "^7.0.2"
-    escalade "^3.1.1"
-    get-caller-file "^2.0.5"
-    require-directory "^2.1.1"
-    string-width "^4.2.0"
-    y18n "^5.0.5"
-    yargs-parser "^20.2.2"
 
 yargs@^17.3.1, yargs@^17.6.2:
   version "17.7.2"
