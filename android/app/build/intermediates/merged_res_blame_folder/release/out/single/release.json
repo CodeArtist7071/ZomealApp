@@ -1,0 +1,102 @@
+[
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.zomeal_android.app-main-42:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable-mdpi_node_modules_reactnativeuidatepicker_src_assets_images_arrow_right.png.flat",
+        "source": "com.zomeal_android.app-res-35:/drawable-mdpi/node_modules_reactnativeuidatepicker_src_assets_images_arrow_right.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable_rn_edit_text_material.xml.flat",
+        "source": "com.zomeal_android.app-main-42:/drawable/rn_edit_text_material.xml"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable-xxxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.zomeal_android.app-res-35:/drawable-xxxhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable-mdpi_src_assets_images_chicken_biryani.jpg.flat",
+        "source": "com.zomeal_android.app-res-35:/drawable-mdpi/src_assets_images_chicken_biryani.jpg"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.zomeal_android.app-main-42:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable-mdpi_src_assets_images_zomeal.png.flat",
+        "source": "com.zomeal_android.app-res-35:/drawable-mdpi/src_assets_images_zomeal.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable-hdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.zomeal_android.app-res-35:/drawable-hdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable-mdpi_node_modules_reactnativeuidatepicker_src_assets_images_arrow_left.png.flat",
+        "source": "com.zomeal_android.app-res-35:/drawable-mdpi/node_modules_reactnativeuidatepicker_src_assets_images_arrow_left.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable-mdpi_src_assets_images_card2.png.flat",
+        "source": "com.zomeal_android.app-res-35:/drawable-mdpi/src_assets_images_card2.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.zomeal_android.app-main-42:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.zomeal_android.app-main-42:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable_logo.png.flat",
+        "source": "com.zomeal_android.app-main-42:/drawable/logo.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.zomeal_android.app-res-35:/drawable-mdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable-xhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.zomeal_android.app-res-35:/drawable-xhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.zomeal_android.app-main-42:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.zomeal_android.app-main-42:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.zomeal_android.app-main-42:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.zomeal_android.app-main-42:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable-xxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.zomeal_android.app-res-35:/drawable-xxhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable-mdpi_src_assets_images_card1.png.flat",
+        "source": "com.zomeal_android.app-res-35:/drawable-mdpi/src_assets_images_card1.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.zomeal_android.app-main-42:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backiconmask.png.flat",
+        "source": "com.zomeal_android.app-res-35:/drawable-mdpi/node_modules_reactnavigation_elements_src_assets_backiconmask.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.zomeal_android.app-main-42:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.zomeal_android.app-merged_res-41:/drawable-mdpi_src_assets_images_card3.png.flat",
+        "source": "com.zomeal_android.app-res-35:/drawable-mdpi/src_assets_images_card3.png"
+    }
+]
