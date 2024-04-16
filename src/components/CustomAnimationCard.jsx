@@ -3,24 +3,28 @@ import {StyleSheet, Dimensions } from 'react-native';
 import CustomCard from './CustomCard';
 import { secondaryBg } from '../constants/Stylesheet';
 import { FlatList, View, Box,Image,Text } from '@gluestack-ui/themed';
-import img1 from '../assets/Images/card1.png'
-import img2 from '../assets/Images/card2.png'
-import img3 from '../assets/Images/card3.png'
+import firestore from '@react-native-firebase/firestore'
+import img1 from '../assets/Images/image3.png'
+import img2 from '../assets/Images/image2.png'
+import img3 from '../assets/Images/image1.png'
 
 const { width } = Dimensions.get('window');
 
 //Data will be invoke through firebase Storage
+
+
 const DATA = [
-  { id: '1', title: 'Card 1' ,src:img1},
-  { id: '2', title: 'Card 2',src:img2},
-  { id: '3', title: 'Card 3', src:img3},
+  { id: '1',src:img1},
+  { id: '2',src:img2},
+  { id: '3', src:img3},
 ];
 
 
 
-const CustomAnimationCard = ({cardHeight,cardWidth,title,CardBgColor,cardTransitionTime}) => {
+const CustomAnimationCard = ({cardHeight,cardWidth,title}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef(null);
+  const [image,setImage] = useState();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -32,9 +36,10 @@ const CustomAnimationCard = ({cardHeight,cardWidth,title,CardBgColor,cardTransit
         setCurrentIndex(0);
       }
     }, 3000);
-
+ 
     return () => clearInterval(interval);
   }, [currentIndex]);
+ 
 
   return (
     <View style={styles.container}>

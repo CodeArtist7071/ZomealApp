@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dimensions } from 'react-native';
+import { Dimensions, TouchableOpacity,Text} from 'react-native';
 import { KeyboardAvoidingView, Box, Card, ScrollView, Divider, LinearGradient, SafeAreaView, HStack } from '@gluestack-ui/themed'; // Assuming these are custom styled components
 import CustomButton from '../components/CustomButton';
 import Textfield from '../components/CustomTextfield';
@@ -50,13 +50,9 @@ const Loginscreen = ({handleChangeText,value,handlePress}) => {
             <HStack width={'80%'} alignSelf='center'>
             <CustomCheckbox as={Check} label={'By loging in, You agree to our Terms and Conditions.'} size={'md'}/>
             </HStack>
-          <CustomButton borderRadius={50} size={'xl'} title={'Send Code'} width={'70%'} height={50} alignSelf={'center'} bgColor={accentBg} color={primaryBg} handlePressEvent={handlePress} marginVertical={30}/>
+         <CustomButton borderRadius={50} size={'xl'} marginTop={20} title={'Send Code'} width={'70%'} height={50} alignSelf={'center'} bgColor={accentBg} color={primaryBg} handlePressEvent={handlePress} marginVertical={30}/>
       </Box>
-</KeyboardAvoidingView>
-
-
-   
-   
+</KeyboardAvoidingView> 
   );
 };
 
